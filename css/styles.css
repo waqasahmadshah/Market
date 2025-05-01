@@ -1180,7 +1180,9 @@ img {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  width: 100%;
+  gap: 20px; /* Increased gap for better spacing */
+  padding: 20px;
 }
 
 .client-logo {
@@ -1188,10 +1190,9 @@ img {
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
   transition: var(--transition);
-  width: 180px;
-  height: 180px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
-  margin: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1209,8 +1210,9 @@ img {
   width: 100%;
   height: 100%;
   filter: grayscale(20%);
-  /* opacity: 0.7; */
   transition: var(--transition);
+  /* object-fit: contain; Ensures images maintain aspect ratio */
+  /* padding: 20px; Adds some space around the image */
 }
 
 .client-logo:hover img {
