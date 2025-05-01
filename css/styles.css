@@ -1582,6 +1582,10 @@ img {
 .footer-links li {
   margin-bottom: 10px;
 }
+.footer-links i{
+  padding-right: 5px; 
+  font-size: small;
+}
 
 .footer-links a {
   color: var(--white-color);
