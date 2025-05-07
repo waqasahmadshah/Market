@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="./assests/WhatsApp Image 2025-04-22 at 1.57.27 PM.jpeg">
+  <title>About Us | MaretxSolutions - Creative Digital Agency</title>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="./css/aos.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <span class="logo-text"><img src="./assests/maket x solution-01.jpg" alt=""></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="portfolio.html">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-primary ms-lg-3" href="contact.html">Let's Talk</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- About Hero Section -->
+   <?php
+   include("configure.php");
+   $current_page = 'about';
+   $sql = "SELECT * FROM hero_sections Where page_name = '$current_page' LIMIT 1";
+   $result = mysqli_query($con, $sql) or die("unsuccessful");
+   ?>
+   <?php
+   if(mysqli_num_rows($result) > 0) {
+     while ($row = $result->fetch_assoc()) {
+  ?>
+  <section class="about-hero">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
+          <span class="subheading">ABOUT US</span>
+          <h1 class="display-4 fw-bold mb-4 text-gradient main-heading"><?php echo htmlspecialchars($row['title']) ."<br>"?></h1>
+          <!-- echo htmlspecialchars($row['sub_title']) -->
+          <p class="lead"><?php echo htmlspecialchars($row["description"]);?></p>
+          <!-- We're a multidisciplinary digital agency on a mission to help bold businesses thrive in a digital-first world. From strategy to pixel-perfect execution, we believe great work starts with a great relationship. -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <?php } }?>
+
+  <!-- Founders Section -->
+  <section class="py-5">
+    <div class="container py-5">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+          <img src="./assests/young-bearded-man-with-striped-shirt.jpg" alt="Founders" class="img-fluid rounded-3">
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+          <span class="subheading">OUR STORY</span>
+          <h2 class="section-title">Meet the Founders</h2>
+          <p class="mb-4">"We started this agency to fuse deep strategy with creative innovation. Today, we're a growing team of designers, developers, and marketers who bring brands to life in meaningful, measurable ways."</p>
+          <div class="d-flex align-items-center">
+            <div class="me-4">
+              <img src="./assests/young-bearded-man-with-striped-shirt.jpg" style="width: 50px;height: 50px; border-radius: 50%;" alt="Faheem Khan" class="rounded-circle">
+            </div>
+            <div>
+              <h5 class="mb-1">Faheem Khan</h5>
+              <p class="text-muted mb-0">Co-Founders</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Values Section -->
+  <section class="py-5 bg-light">
+    <div class="container py-5">
+      <div class="row text-center mb-5">
+        <div class="col-lg-8 mx-auto" data-aos="fade-up">
+          <span class="subheading">OUR VALUES</span>
+          <h2 class="section-title">What Drives Us</h2>
+          <p class="section-description">Our core values shape everything we do, from how we work with clients to how we approach each project.</p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="value-card text-center">
+            <div class="value-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <h3>Clarity > Complexity</h3>
+            <p>We communicate simply and execute with precision.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+          <div class="value-card text-center">
+            <div class="value-icon">
+              <i class="fas fa-bullseye"></i>
+            </div>
+            <h3>Create with Purpose</h3>
+            <p>Everything we design is grounded in strategy.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+          <div class="value-card text-center">
+            <div class="value-icon">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <h3>Client = Partner</h3>
+            <p>Collaboration drives results. We grow together.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+          <div class="value-card text-center">
+            <div class="value-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3>Always Evolving</h3>
+            <p>We stay ahead of trends, tools, and tech.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section class="py-5">
+    <div class="container py-5">
+      <div class="row text-center mb-5">
+        <div class="col-lg-8 mx-auto" data-aos="fade-up">
+          <span class="subheading">OUR JOURNEY</span>
+          <h2 class="section-title">Milestones & Growth</h2>
+          <p class="section-description">From our humble beginnings to where we are today, we've grown through dedication and passion.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <ul class="timeline">
+            <li class="timeline-item" data-aos="fade-up">
+              <div class="timeline-badge">
+                <i class="fas fa-flag"></i>
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4 class="mb-2">2019</h4>
+                  <h5 class="text-primary mb-3">Founded in Brooklyn</h5>
+                </div>
+                <div class="timeline-body">
+                  <p>Started with a small team of passionate creatives in a Brooklyn co-working space.</p>
+                </div>
+              </div>
+            </li>
+            <li class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+              <div class="timeline-badge">
+                <i class="fas fa-globe"></i>
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4 class="mb-2">2020</h4>
+                  <h5 class="text-primary mb-3">First global client signed</h5>
+                </div>
+                <div class="timeline-body">
+                  <p>Expanded our reach beyond local markets to serve clients internationally.</p>
+                </div>
+              </div>
+            </li>
+            <li class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+              <div class="timeline-badge">
+                <i class="fas fa-trophy"></i>
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4 class="mb-2">2021</h4>
+                  <h5 class="text-primary mb-3">100+ projects delivered</h5>
+                </div>
+                <div class="timeline-body">
+                  <p>Reached a significant milestone with over 100 successful projects completed.</p>
+                </div>
+              </div>
+            </li>
+            <li class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+              <div class="timeline-badge">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4 class="mb-2">2023</h4>
+                  <h5 class="text-primary mb-3">Team expands across 4 continents</h5>
+                </div>
+                <div class="timeline-body">
+                  <p>Grew our team to include talented professionals from around the world.</p>
+                </div>
+              </div>
+            </li>
+            <li class="timeline-item" data-aos="fade-up" data-aos-delay="400">
+              <div class="timeline-badge">
+                <i class="fas fa-award"></i>
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4 class="mb-2">2024</h4>
+                  <h5 class="text-primary mb-3">Featured in Awwwards & Webby shortlist</h5>
+                </div>
+                <div class="timeline-body">
+                  <p>Recognized for our exceptional work with industry awards and accolades.</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="py-5 bg-light">
+    <div class="container py-5">
+      <div class="row text-center mb-5">
+        <div class="col-lg-8 mx-auto" data-aos="fade-up">
+          <span class="subheading">OUR TEAM</span>
+          <h2 class="section-title">The Talent Behind Our Success</h2>
+          <p class="section-description">Meet the creative minds and technical experts who bring our projects to life.</p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="team-member text-center">
+            <div class="member-img">
+              <img src="./assests/young-bearded-man-with-striped-shirt.jpg" alt="Team Member" class="img-fluid">
+            </div>
+            <div class="member-info mt-4">
+              <h4>Asad Khan</h4>
+              <span class="text-muted d-block mb-3">Creative Director</span>
+              <div class="social-links">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-dribbble"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+          <div class="team-member text-center">
+            <div class="member-img">
+              <img src="./assests/young-bearded-man-with-striped-shirt.jpg" alt="Team Member" class="img-fluid">
+            </div>
+            <div class="member-info mt-4">
+              <h4>Faheem Khan</h4>
+              <span class="text-muted d-block mb-3">Lead Developer</span>
+              <div class="social-links">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+          <div class="team-member text-center">
+            <div class="member-img">
+              <img src="./assests/young-bearded-man-with-striped-shirt.jpg" alt="Team Member" class="img-fluid">
+            </div>
+            <div class="member-info mt-4">
+              <h4>Abdul Mohaiman</h4>
+              <span class="text-muted d-block mb-3">UX/UI Designer</span>
+              <div class="social-links">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-behance"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+          <div class="team-member text-center">
+            <div class="member-img">
+              <img src="./assests/young-bearded-man-with-striped-shirt.jpg" alt="Team Member" class="img-fluid">
+            </div>
+            <div class="member-info mt-4">
+              <h4>Waqas Ahmad shah</h4>
+              <span class="text-muted d-block mb-3">Marketing Strategist</span>
+              <div class="social-links">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="cta" class="py-5">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="cta-inner text-center" data-aos="zoom-in">
+            <h2 class="mb-4">Ready to Work Together?</h2>
+            <p class="lead mb-4">Let's discuss how we can help your brand reach its full potential.</p>
+            <a href="contact.html" class="btn btn-primary btn-lg">Get in Touch</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container-fluid px-5">
+      <div class="row pt-5 justify-content-between">
+        <div class="col-lg-4">
+          <div class="footer-info justify-content-space-between">
+            <h3 class="footer-logo">MarketXsolution</h3>
+            <p>Creating digital experiences that elevate brands and drive business growth.</p>
+            <div class="social-links mt-3">
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="index.html"><i class="fas fa-angle-double-right"></i>Home</a></li>
+              <li><a href="about.html"><i class="fas fa-angle-double-right"></i>About</a></li>
+              <li><a href="services.html"><i class="fas fa-angle-double-right"></i>Services</a></li>
+              <li><a href="portfolio.html"><i class="fas fa-angle-double-right"></i>Portfolio</a></li>
+              <li><a href="contact.html"><i class="fas fa-angle-double-right"></i>Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <div class="footer-links">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="services.html"><i class="fas fa-angle-double-right"></i>Branding</a></li>
+              <li><a href="services.html"><i class="fas fa-angle-double-right"></i>Web Development</a></li>
+              <li><a href="services.html"><i class="fas fa-angle-double-right"></i>Digital Marketing</a></li>
+              <li><a href="services.html"><i class="fas fa-angle-double-right"></i>UX/UI Design</a></li>
+              <li><a href="services.html"><i class="fas fa-angle-double-right"></i>Content Creation</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <div class="footer-links">
+            <h4>Contact Now</h4>
+            <ul class="address">
+              <li><a href="#">
+                <div><i class="fas fa-map-marker-alt"></i></div>
+                <div class="cont">Arfa Karim incubator peshawar</div></a>
+              </li>
+              <li><a href="#">
+                <div><i class="fas fa-envelope"></i></div>
+                <div class="cont">marketxsolution@gmail.com</div></a>
+              </li>
+              <li><a href="#">
+                <div><i class="fas fa-globe"></i></div>
+                <div class="cont">www.marketxsolution.com</div></a>
+              </li>
+              <li><a href="#">
+                <div><i class="fas fa-phone-alt"></i></div>
+                <div class="cont">+92 3209955837</div></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-12">
+          <div class="copyright text-center">
+            <p>&copy; <span id="current-year">2025</span> <strong>MaretxSolution</strong>. All Rights Reserved.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top button -->
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
+  <!-- whatsapp link -->
+  <a  href="https://wa.me/923350055620?"  class="whatsapp-link" target="_blank" aria-label="Contact via WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Scripts -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/script.js"></script>
+
+  
+</body>
+</html>

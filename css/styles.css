@@ -5,7 +5,7 @@
 :root {
   /* New Color Palette */
   --primary-color: #2c3e50; /* Dark Blue */
-  --secondary-color: #e49b38; /* Vibrant Red */
+  --secondary-color: #FF9B05; /* Vibrant Red */
   /* --accent-color: #2b2f80; Bright Blue */
   --dark-color: #2b2f80; /* Almost Black */
   --light-color: #f5f5f5; /* Off White */
@@ -18,7 +18,7 @@
 
   /* Gradients */
   --gradient-primary: linear-gradient(135deg, #2b2f80 0%, #2b2f80 100%);
-  --gradient-secondary: linear-gradient(135deg, #e74c3c 0%, #e49b38 100%);
+  --gradient-secondary: linear-gradient(135deg, #e74c3c 0%, #FF9B05 100%);
   --gradient-accent: linear-gradient(135deg, #2b2f80 0%,#3a3e9a 30%,#4a4fb3 100%);
   
   /* Hero Background */
@@ -922,7 +922,7 @@ img {
   display: inline-flex;
   align-items: center;
   font-weight: 600;
-  color: var(--accent-color);
+  color: var(--white-color);
   transition: var(--transition);
 }
 
@@ -931,10 +931,7 @@ img {
   transition: var(--transition);
 }
 
-.portfolio-item:hover .portfolio-details-link,
-.portfolio-item:hover .portfolio-card-link {
-  color: var(--secondary-color);
-}
+
 
 .portfolio-item:hover .portfolio-details-link i {
   transform: translateX(5px);
@@ -1051,7 +1048,7 @@ img {
 }
 
 .portfolio-card-link:hover {
-  background: var(--secondary-color);
+  background: var(--gradient-secondary);
   color: var(--white-color);
   transform: scale(1.05);
 }
