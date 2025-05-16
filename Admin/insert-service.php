@@ -1,6 +1,7 @@
 <?php
 include "configure.php";
 
+
 if (isset($_FILES['image_url'])) {
     $file = $_FILES['image_url'];
     $allowed_types = ["jpeg", "jpg", "png"];

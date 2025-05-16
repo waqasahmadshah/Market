@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: index.php");
+    exit;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +18,7 @@
     <title>Focus - Bootstrap Admin Dashboard </title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- Custom Stylesheet -->
     <link href="./css/style.css" rel="stylesheet">
 
@@ -39,8 +50,8 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="index.html" class="brand-logo">
-                <img class="logo-abbr" src="./images/logo.png" alt="">
+            <a href="dashboard.php" class="brand-logo">
+                <img class="logo-abbr" src="./images/maket x solution-01.jpg" style="width: 55px; border-radius: 50%;" alt="">
                 <img class="logo-compact" src="./images/logo-text.png" alt="">
                 <img class="brand-title" src="./images/logo-text.png" alt="">
             </a>
@@ -55,7 +66,7 @@
             Nav header end
         ***********************************-->
 
-        <!--**********************************
+         <!--**********************************
             Header start
         ***********************************-->
         <div class="header">
@@ -76,67 +87,66 @@
                         </div>
 
                         <ul class="navbar-nav header-right">
+                            <?php
+                            include "configure.php";
+
+                            // Count unread messages
+                            $unread_query = "SELECT COUNT(*) AS unread_count FROM messages WHERE status = 0";
+                            $unread_result = mysqli_query($con, $unread_query);
+                            $unread = mysqli_fetch_assoc($unread_result)['unread_count'];
+
+                            // Fetch latest 5 messages
+                            $query = "SELECT name, subject, created_at FROM messages ORDER BY created_at DESC LIMIT 5";
+                            $result = mysqli_query($con, $query);
+                            ?>
                             <li class="nav-item dropdown notification_dropdown">
-                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
+                                <a class="nav-link" href="#" role="button" data-toggle="dropdown" id="notifDropdown">
                                     <i class="mdi mdi-bell"></i>
-                                    <div class="pulse-css"></div>
+                                    <?php if ($unread > 0): ?>
+                                        <span class="badge badge-pill badge-primary"><?php echo $unread; ?></span>
+                                    <?php endif; ?>
+                                    <!-- <div class="pulse-css"></div> -->
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <ul class="list-unstyled">
-                                        <li class="media dropdown-item">
-                                            <span class="success"><i class="ti-user"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong>Martin</strong> has added a <strong>customer</strong> Successfully
-                                                    </p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
-                                        <li class="media dropdown-item">
-                                            <span class="primary"><i class="ti-shopping-cart"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong>Jennifer</strong> purchased Light Dashboard 2.0.</p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
-                                        <li class="media dropdown-item">
-                                            <span class="danger"><i class="ti-bookmark"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong>Robin</strong> marked a <strong>ticket</strong> as unsolved.
-                                                    </p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
-                                        <li class="media dropdown-item">
-                                            <span class="primary"><i class="ti-heart"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong>David</strong> purchased Light Dashboard 1.0.</p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
-                                        <li class="media dropdown-item">
-                                            <span class="success"><i class="ti-image"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong> James.</strong> has added a<strong>customer</strong> Successfully
-                                                    </p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
+                                        <?php if ($result && mysqli_num_rows($result) > 0): ?>
+                                            <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                                                <li class="media dropdown-item">
+                                                    <span class="primary"><i class="ti-email"></i></span>
+                                                    <div class="media-body">
+                                                        <a href="#">
+                                                            <p><strong><?php echo htmlspecialchars($row['name']); ?></strong> sent a message: 
+                                                            <strong><?php echo htmlspecialchars($row['subject']); ?></strong></p>
+                                                        </a>
+                                                    </div>
+                                                    <span class="notify-time"><?php echo date("H:i a", strtotime($row['created_at'])); ?></span>
+                                                </li>
+                                            <?php endwhile; ?>
+                                        <?php else: ?>
+                                            <li class="media dropdown-item text-center">
+                                                <p class="mb-0 text-muted">No new messages</p>
+                                            </li>
+                                        <?php endif; ?>
                                     </ul>
-                                    <a class="all-notification" href="#">See all notifications <i
-                                            class="ti-arrow-right"></i></a>
+                                    <a class="all-notification" href="contact_message.php">
+                                        See all messages <i class="ti-arrow-right"></i>
+                                    </a>
                                 </div>
                             </li>
-                            <li class="nav-item dropdown header-profile">
+                            <script>
+                                document.getElementById('notifDropdown').addEventListener('click', function() {
+                                    fetch('mark_notifications_read.php')
+                                        .then(response => response.text())
+                                        .then(data => {
+                                            // Remove the notification badge
+                                            const badge = document.querySelector('.badge.badge-pill.badge-danger');
+                                            if (badge) badge.remove();
+                                        });
+                                });
+                            </script>
+
+
+                            <!-- <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="#" role="button" data-toggle="dropdown">
                                     <i class="mdi mdi-account"></i>
                                 </a>
@@ -154,7 +164,7 @@
                                         <span class="ml-2">Logout </span>
                                     </a>
                                 </div>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </nav>
@@ -164,97 +174,118 @@
             Header end ti-comment-alt
         ***********************************-->
 
-        <!--**********************************
+       <!--**********************************
             Sidebar start
         ***********************************-->
         <div class="quixnav">
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
+
+                    <!-- 📂 Main Menu -->
                     <li class="nav-label first">Main Menu</li>
-                    <li><a href="./index.php" aria-expanded="false">
-                       <span class="nav-text">Dashboard</span></a>
+                    <li>
+                        <a href="dashboard.php" aria-expanded="false">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
                     </li>
+
+                    <!-- 👥 Users -->
                     <li class="nav-label">Users</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                        class="icon icon-app-store"></i><span class="nav-text">User</span></a>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="fas fa-users"></i>
+                            <span class="nav-text">User</span>
+                        </a>
                         <ul aria-expanded="false">
-                            <li><a href="./uerses.php">Admin</a></li>
-                        </ul>
-                    </li>
-
-
-                    <!-- <li class="nav-label">Apps</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-app-store"></i><span class="nav-text">Apps</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="./app-profile.html">Profile</a></li>
-                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Email</a>
-                                <ul aria-expanded="false">
-                                    <li><a href="./email-compose.html">Compose</a></li>
-                                    <li><a href="./email-inbox.html">Inbox</a></li>
-                                    <li><a href="./email-read.html">Read</a></li>
-                                </ul>
+                            <li>
+                                <a href="users.php">
+                                    <i class="fas fa-user-shield"></i> Admin
+                                </a>
                             </li>
-                            <li><a href="./app-calender.html">Calendar</a></li>
-                        </ul>
-                    </li> -->
-                    <li class="nav-label">Components</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-world-2"></i><span class="nav-text">Bootstrap</span></a>
-                        <ul aria-expanded="false">
                         </ul>
                     </li>
 
-                    <!-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-plug"></i><span class="nav-text">Plugins</span></a>
-                        <ul aria-expanded="false">
-                            
-                        </ul>
-                    </li> -->
-                    <li class="nav-label">Forms</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-form"></i><span class="nav-text">Forms</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="./form-element.php">Hero-section.php</a></li>
-                            
-                        </ul>
+                    <li class="nav-label">Projects</li>
+                    <li>
+                        <a href="projects.php" aria-expanded="false">
+                            <i class="fas fa-folder"></i>
+                            <span class="nav-text">Project</span>
+                        </a>
                     </li>
-                    <li class="nav-label">Table</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-layout-25"></i><span class="nav-text">Table</span></a>
+
+                    <!-- 🛠 Control Website -->
+                    <li class="nav-label">Control Website</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="fas fa-tools"></i>
+                            <span class="nav-text">Website Manage</span>
+                        </a>
                         <ul aria-expanded="false">
-                            <li><a href="hero.php">Hero Section</a></li>
-                            <li><a href="services.php">Services</a></li>
-                            <li><a href="about.php">About Section</a></li>
-                            <li><a href="testimonial.php">Testmial</a></li>
-                            <li><a href="team_member.php">Team Member</a></li>
-                            <li><a href="brand.php">Brands </a></li>
-                            <li><a href="apporaches.php">Approaches</a></li>
+                            <li><a href="hero.php"><i class="fas fa-image"></i> Hero Section</a></li>
+                            <li><a href="about.php"><i class="fas fa-info-circle"></i> About Section</a></li>
+                            <li><a href="services.php"><i class="fas fa-concierge-bell"></i> Services</a></li>
+                            <li><a href="portfolio.php"><i class="fas fa-briefcase"></i>Portfolio section</a></li>
+                            <li><a href="ourvalues.php"><i class="fas fa-briefcase"></i>Our values</a></li>
+                            <li><a href="website_section.php"><i class="fas fa-briefcase"></i>Website Section</a></li>
+                            <li><a href="apporaches.php"><i class="fas fa-rocket"></i> Approaches</a></li>
+                            <li><a href="mile_stone.php"><i class="fas fa-flag-checkered"></i> MileStone</a></li>
+                            <li><a href="brand.php"><i class="fas fa-flag"></i> Brands</a></li>
+                            <li><a href="testimonial.php"><i class="fas fa-comment-dots"></i> Testimonial</a></li>
                         </ul>
                     </li>
 
-                    <li class="nav-label">Extra</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-single-copy-06"></i><span class="nav-text">Pages</span></a>
+                    <!-- 👨‍💼 Team Section -->
+                    <li class="nav-label">Team</li>
+                    <li>
+                        <a href="team_member.php" aria-expanded="false">
+                            <i class="fas fa-users-cog"></i>
+                            <span class="nav-text">Team Member</span>
+                        </a>
+                    </li>
+
+                    <!-- ⚙️ Settings -->
+                    <li class="nav-label">Settings</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="fas fa-cogs"></i>
+                            <span class="nav-text">General Settings</span>
+                        </a>
                         <ul aria-expanded="false">
-                            <li><a href="./page-register.html">Register</a></li>
-                            <li><a href="./page-login.html">Login</a></li>
-                            <!-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Error</a>
-                                <ul aria-expanded="false">
-                                    
-                                </ul>
-                            </li> -->
-                            <li><a href="./page-lock-screen.html">Lock Screen</a></li>
+                            <li>
+                                <a href="Compeny_info.php">
+                                    <i class="fas fa-building"></i> Company Info
+                                </a>
+                            </li>
+                            <li>
+                                <a href="compeny_contact.php">
+                                    <i class="fas fa-phone-square"></i> Company Contact
+                                </a>
+                            </li>
                         </ul>
                     </li>
 
+                    <!-- 🔔 Notifications -->
+                    <li class="nav-label">Notifications</li>
+                    <li>
+                        <a href="contact_message.php" aria-expanded="false">
+                            <i class="fas fa-bell"></i>
+                            <span class="nav-text">Notifications</span>
+                        </a>
+                    </li>
+
+                    <!-- 🚪 Logout -->
                     <li class="nav-label">Logout</li>
-                    <li><a><i class="ti-close"></i> Logout</a></li>
+                    <li>
+                        <a href="logout.php">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </li>
+
                 </ul>
             </div>
-
-
         </div>
+
         <!--**********************************
             Sidebar end
         ***********************************-->
@@ -267,14 +298,14 @@
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
-                            <h4>Hi, welcome back!</h4>
-                            <span class="ml-1">Element</span>
+                            <h4>Form for updation</h4>
+                            <span class="ml-1">Services Feature</span>
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="hero.php">Hero-page</a></li>
-                            <li class="breadcrumb-item active"><a href="javascript:void(0)">Hero Form</a></li>
+                            <li class="breadcrumb-item"><a href="services.php">Services</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0)">Update Feature</a></li>
                         </ol>
                     </div>
                 </div>

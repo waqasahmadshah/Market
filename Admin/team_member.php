@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: index.php");
+    exit;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,12 +46,12 @@
     ***********************************-->
     <div id="main-wrapper">
 
-        <!--**********************************
+         <!--**********************************
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="index.html" class="brand-logo">
-                <img class="logo-abbr" src="./images/logo.png" alt="">
+            <a href="dashboard.php" class="brand-logo">
+                <img class="logo-abbr" src="./images/maket x solution-01.jpg" style="width: 55px; border-radius: 50%;" alt="">
                 <img class="logo-compact" src="./images/logo-text.png" alt="">
                 <img class="brand-title" src="./images/logo-text.png" alt="">
             </a>
@@ -77,67 +87,66 @@
                         </div>
 
                         <ul class="navbar-nav header-right">
+                            <?php
+                            include "configure.php";
+
+                            // Count unread messages
+                            $unread_query = "SELECT COUNT(*) AS unread_count FROM messages WHERE status = 0";
+                            $unread_result = mysqli_query($con, $unread_query);
+                            $unread = mysqli_fetch_assoc($unread_result)['unread_count'];
+
+                            // Fetch latest 5 messages
+                            $query = "SELECT name, subject, created_at FROM messages ORDER BY created_at DESC LIMIT 5";
+                            $result = mysqli_query($con, $query);
+                            ?>
                             <li class="nav-item dropdown notification_dropdown">
-                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
+                                <a class="nav-link" href="#" role="button" data-toggle="dropdown" id="notifDropdown">
                                     <i class="mdi mdi-bell"></i>
-                                    <div class="pulse-css"></div>
+                                    <?php if ($unread > 0): ?>
+                                        <span class="badge badge-pill badge-primary"><?php echo $unread; ?></span>
+                                    <?php endif; ?>
+                                    <!-- <div class="pulse-css"></div> -->
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <ul class="list-unstyled">
-                                        <li class="media dropdown-item">
-                                            <span class="success"><i class="ti-user"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong>Martin</strong> has added a <strong>customer</strong> Successfully
-                                                    </p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
-                                        <li class="media dropdown-item">
-                                            <span class="primary"><i class="ti-shopping-cart"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong>Jennifer</strong> purchased Light Dashboard 2.0.</p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
-                                        <li class="media dropdown-item">
-                                            <span class="danger"><i class="ti-bookmark"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong>Robin</strong> marked a <strong>ticket</strong> as unsolved.
-                                                    </p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
-                                        <li class="media dropdown-item">
-                                            <span class="primary"><i class="ti-heart"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong>David</strong> purchased Light Dashboard 1.0.</p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
-                                        <li class="media dropdown-item">
-                                            <span class="success"><i class="ti-image"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong> James.</strong> has added a<strong>customer</strong> Successfully
-                                                    </p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
+                                        <?php if ($result && mysqli_num_rows($result) > 0): ?>
+                                            <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                                                <li class="media dropdown-item">
+                                                    <span class="primary"><i class="ti-email"></i></span>
+                                                    <div class="media-body">
+                                                        <a href="#">
+                                                            <p><strong><?php echo htmlspecialchars($row['name']); ?></strong> sent a message: 
+                                                            <strong><?php echo htmlspecialchars($row['subject']); ?></strong></p>
+                                                        </a>
+                                                    </div>
+                                                    <span class="notify-time"><?php echo date("H:i a", strtotime($row['created_at'])); ?></span>
+                                                </li>
+                                            <?php endwhile; ?>
+                                        <?php else: ?>
+                                            <li class="media dropdown-item text-center">
+                                                <p class="mb-0 text-muted">No new messages</p>
+                                            </li>
+                                        <?php endif; ?>
                                     </ul>
-                                    <a class="all-notification" href="#">See all notifications <i
-                                            class="ti-arrow-right"></i></a>
+                                    <a class="all-notification" href="contact_message.php">
+                                        See all messages <i class="ti-arrow-right"></i>
+                                    </a>
                                 </div>
                             </li>
-                            <li class="nav-item dropdown header-profile">
+                            <script>
+                                document.getElementById('notifDropdown').addEventListener('click', function() {
+                                    fetch('mark_notifications_read.php')
+                                        .then(response => response.text())
+                                        .then(data => {
+                                            // Remove the notification badge
+                                            const badge = document.querySelector('.badge.badge-pill.badge-danger');
+                                            if (badge) badge.remove();
+                                        });
+                                });
+                            </script>
+
+
+                            <!-- <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="#" role="button" data-toggle="dropdown">
                                     <i class="mdi mdi-account"></i>
                                 </a>
@@ -155,7 +164,7 @@
                                         <span class="ml-2">Logout </span>
                                     </a>
                                 </div>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </nav>
@@ -165,97 +174,118 @@
             Header end ti-comment-alt
         ***********************************-->
 
-        <!--**********************************
+      <!--**********************************
             Sidebar start
         ***********************************-->
         <div class="quixnav">
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
+
+                    <!-- 📂 Main Menu -->
                     <li class="nav-label first">Main Menu</li>
-                    <li><a href="./index.php" aria-expanded="false">
-                       <span class="nav-text">Dashboard</span></a>
+                    <li>
+                        <a href="dashboard.php" aria-expanded="false">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
                     </li>
+
+                    <!-- 👥 Users -->
                     <li class="nav-label">Users</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                        class="icon icon-app-store"></i><span class="nav-text">User</span></a>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="fas fa-users"></i>
+                            <span class="nav-text">User</span>
+                        </a>
                         <ul aria-expanded="false">
-                            <li><a href="./uerses.php">Admin</a></li>
-                        </ul>
-                    </li>
-
-
-                    <!-- <li class="nav-label">Apps</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-app-store"></i><span class="nav-text">Apps</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="./app-profile.html">Profile</a></li>
-                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Email</a>
-                                <ul aria-expanded="false">
-                                    <li><a href="./email-compose.html">Compose</a></li>
-                                    <li><a href="./email-inbox.html">Inbox</a></li>
-                                    <li><a href="./email-read.html">Read</a></li>
-                                </ul>
+                            <li>
+                                <a href="users.php">
+                                    <i class="fas fa-user-shield"></i> Admin
+                                </a>
                             </li>
-                            <li><a href="./app-calender.html">Calendar</a></li>
-                        </ul>
-                    </li> -->
-                    <li class="nav-label">Components</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-world-2"></i><span class="nav-text">Bootstrap</span></a>
-                        <ul aria-expanded="false">
                         </ul>
                     </li>
 
-                    <!-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-plug"></i><span class="nav-text">Plugins</span></a>
-                        <ul aria-expanded="false">
-                            
-                        </ul>
-                    </li> -->
-                    <li class="nav-label">Forms</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-form"></i><span class="nav-text">Forms</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="./form-element.php">Hero-section.php</a></li>
-                            
-                        </ul>
+                    <li class="nav-label">Projects</li>
+                    <li>
+                        <a href="projects.php" aria-expanded="false">
+                            <i class="fas fa-folder"></i>
+                            <span class="nav-text">Project</span>
+                        </a>
                     </li>
-                    <li class="nav-label">Table</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-layout-25"></i><span class="nav-text">Table</span></a>
+
+                    <!-- 🛠 Control Website -->
+                    <li class="nav-label">Control Website</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="fas fa-tools"></i>
+                            <span class="nav-text">Website Manage</span>
+                        </a>
                         <ul aria-expanded="false">
-                            <li><a href="hero.php">Hero Section</a></li>
-                            <li><a href="services.php">Services</a></li>
-                            <li><a href="about.php">About Section</a></li>
-                            <li><a href="testimonial.php">Testmial</a></li>
-                            <li><a href="team_member.php">Team Member</a></li>
-                            <li><a href="brand.php">Brands </a></li>
-                            <li><a href="apporaches.php">Approaches</a></li>
+                            <li><a href="hero.php"><i class="fas fa-image"></i> Hero Section</a></li>
+                            <li><a href="about.php"><i class="fas fa-info-circle"></i> About Section</a></li>
+                            <li><a href="services.php"><i class="fas fa-concierge-bell"></i> Services</a></li>
+                            <li><a href="portfolio.php"><i class="fas fa-briefcase"></i>Portfolio section</a></li>
+                            <li><a href="ourvalues.php"><i class="fas fa-briefcase"></i>Our values</a></li>
+                            <li><a href="website_section.php"><i class="fas fa-briefcase"></i>Website Section</a></li>
+                            <li><a href="apporaches.php"><i class="fas fa-rocket"></i> Approaches</a></li>
+                            <li><a href="mile_stone.php"><i class="fas fa-flag-checkered"></i> MileStone</a></li>
+                            <li><a href="brand.php"><i class="fas fa-flag"></i> Brands</a></li>
+                            <li><a href="testimonial.php"><i class="fas fa-comment-dots"></i> Testimonial</a></li>
                         </ul>
                     </li>
 
-                    <li class="nav-label">Extra</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-single-copy-06"></i><span class="nav-text">Pages</span></a>
+                    <!-- 👨‍💼 Team Section -->
+                    <li class="nav-label">Team</li>
+                    <li>
+                        <a href="team_member.php" aria-expanded="false">
+                            <i class="fas fa-users-cog"></i>
+                            <span class="nav-text">Team Member</span>
+                        </a>
+                    </li>
+
+                    <!-- ⚙️ Settings -->
+                    <li class="nav-label">Settings</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="fas fa-cogs"></i>
+                            <span class="nav-text">General Settings</span>
+                        </a>
                         <ul aria-expanded="false">
-                            <li><a href="./page-register.html">Register</a></li>
-                            <li><a href="./page-login.html">Login</a></li>
-                            <!-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Error</a>
-                                <ul aria-expanded="false">
-                                    
-                                </ul>
-                            </li> -->
-                            <li><a href="./page-lock-screen.html">Lock Screen</a></li>
+                            <li>
+                                <a href="Compeny_info.php">
+                                    <i class="fas fa-building"></i> Company Info
+                                </a>
+                            </li>
+                            <li>
+                                <a href="compeny_contact.php">
+                                    <i class="fas fa-phone-square"></i> Company Contact
+                                </a>
+                            </li>
                         </ul>
                     </li>
 
+                    <!-- 🔔 Notifications -->
+                    <li class="nav-label">Notifications</li>
+                    <li>
+                        <a href="contact_message.php" aria-expanded="false">
+                            <i class="fas fa-bell"></i>
+                            <span class="nav-text">Notifications</span>
+                        </a>
+                    </li>
+
+                    <!-- 🚪 Logout -->
                     <li class="nav-label">Logout</li>
-                    <li><a><i class="ti-close"></i> Logout</a></li>
+                    <li>
+                        <a href="logout.php">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </li>
+
                 </ul>
             </div>
-
-
         </div>
+
         <!--**********************************
             Sidebar end
         ***********************************-->
@@ -265,292 +295,102 @@
         ***********************************-->
         <div class="content-body">
             <div class="container-fluid">
-                <h1 class="main text-primary">Services</h1>
+                <h1 class="main text-primary">Team Member</h1>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Services</h4>
-                                <a href="services-add.php"><button class="btn btn-primary">Insert</button></a>
+                                <h4 class="card-title">Records</h4>
+                                <a href="team_member_add.php"><button class="btn btn-primary">Add</button></a>
                             </div>
                             <div class="card-body">
-                            <div class="table-responsive">
+                                <div class="table-responsive">
                                     <?php
                                     include "configure.php";
-                                   
-                                    $limit = 10;
-                                    if(isset($_GET['page'])) {
-                                        $page = $_GET['page'];
-                                    } else {
-                                        $page = 1;
-                                    }
 
+                                    $limit = 10;
+                                    $page = isset($_GET['page']) ? $_GET['page'] : 1;
                                     $offset = ($page - 1) * $limit;
-                                    // Changed ORDER BY from DESC to ASC to show oldest records first
-                                    $sql = "SELECT * FROM services ORDER BY service_id ASC LIMIT {$offset},{$limit}";
-                                    $result = mysqli_query($con, $sql) or die("unsuccessful");
-                                    
+
+                                    $sql = "SELECT * FROM teammember ORDER BY id ASC LIMIT {$offset},{$limit}";
+                                    $result = mysqli_query($con, $sql) or die("Unsuccessful");
+
                                     if(mysqli_num_rows($result) > 0) {
                                     ?>
                                     <table class="table table-responsive-sm">
                                         <thead class="thead-primary">
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Service Name</th>
-                                                <th>Short Intro</th>
-                                                <th>Discription</th>
-                                                <th>icon</th>
                                                 <th>Image</th>
+                                                <th>Name</th>
+                                                <th>Position</th>
+                                                <th>Phone No</th>
+                                                <th>Status</th>
                                                 <th>Edit</th>
                                                 <th>Delete</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                             $serial_no = $offset+1;
+                                            $serial_no = $offset + 1;
                                             while ($row = $result->fetch_assoc()) {
                                                 echo "<tr class='text-dark'>";
-                                                echo "<td>" . $serial_no++. "</td>";
-                                                echo "<td>" . htmlspecialchars($row['title']) . "</td>";
-                                                echo "<td>" . htmlspecialchars($row['short_desc']) . "</td>";
-                                                echo "<td>" . htmlspecialchars($row['description']) . "</td>";
-                                                echo "<td><i class='{$row['icon_class']}'</td>";
+                                                echo "<td>" . $serial_no++ . "</td>";
                                                 echo "<td><img src='upload/" . htmlspecialchars($row['image_url']) . "' width='50' height='50' style='object-fit: cover;'></td>";
+                                                echo "<td>" . htmlspecialchars($row['name']) . "</td>";
+                                                echo "<td>" . htmlspecialchars($row['position']) . "</td>";
+                                                echo "<td>" . htmlspecialchars($row['phone_no']) . "</td>";
+                                                
+                                                $status_label = $row['status'] === 'active' ? 'Deactivate' : 'Activate';
+                                                $status_class = $row['status'] === 'active' ? 'btn-success' : 'btn-secondary';
+
                                                 echo "<td>
-                                                <a href='service-update.php?id=".htmlspecialchars($row['service_id'])."'><button class='btn btn-warning'>Edit</button></a></td>
-                                                        <td><a href='delete-services.php?id=".htmlspecialchars($row['service_id'])."'><button class='btn btn-danger'>Delete</button></a>
+                                                        <a href='toggle_status.php?id=" . htmlspecialchars($row['id']) . "'>
+                                                            <button class='btn $status_class'>$status_label</button>
+                                                        </a>
+                                                    </td>";
+
+                                                echo "<td>
+                                                        <a href='team_member_update.php?id=" . htmlspecialchars($row['id']) . "'>
+                                                            <button class='btn btn-warning'>Edit</button>
+                                                        </a>
+                                                    </td>";
+                                                echo "<td>
+                                                        <a href='delete_team_member.php?id=" . htmlspecialchars($row['id']) . "' class='btn btn-sm btn-danger' onclick='return confirm(\"Are you sure?\");'>Delete</a>
                                                     </td>";
                                                 echo "</tr>";
                                             }
                                             ?>
-                                            
                                         </tbody>
                                     </table>
                                     <?php } else { ?>
                                         <tr><td colspan='10' class='text-center'>No data found.</td></tr>
                                     <?php } ?>
-                                    
+
                                     <nav aria-label="Page navigation">
                                         <?php
-                                        $sql1 = "SELECT * FROM hero_sections";
+                                        $sql1 = "SELECT * FROM teammember";
                                         $result1 = mysqli_query($con, $sql1) or die("Query failed");
-                                        
+
                                         if (mysqli_num_rows($result1) > 0) {
                                             $total_records = mysqli_num_rows($result1);
                                             $total_page = ceil($total_records / $limit);
-                                            
+
                                             echo '<ul class="pagination justify-content-center">';
-                                            
-                                            // Previous button
+
                                             if ($page > 1) {
-                                                echo '<li class="page-item"><a class="page-link" href="services.php?page=' . ($page - 1) . '">Prev</a></li>';
+                                                echo '<li class="page-item"><a class="page-link" href="team_member.php?page=' . ($page - 1) . '">Prev</a></li>';
                                             }
-                                            
-                                            // Page number links
+
                                             for ($i = 1; $i <= $total_page; $i++) {
                                                 $active = ($i == $page) ? "active" : "";
-                                                echo '<li class="page-item ' . $active . '"><a class="page-link" href="services.php?page=' . $i . '">' . $i . '</a></li>';
+                                                echo '<li class="page-item ' . $active . '"><a class="page-link" href="team_member.php?page=' . $i . '">' . $i . '</a></li>';
                                             }
-                                            
-                                            // Next button
+
                                             if ($page < $total_page) {
-                                                echo '<li class="page-item"><a class="page-link" href="services.php?page=' . ($page + 1) . '">Next</a></li>';
+                                                echo '<li class="page-item"><a class="page-link" href="team_member.php?page=' . ($page + 1) . '">Next</a></li>';
                                             }
-                                            
-                                            echo '</ul>';
-                                        }
-                                        ?>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <h1 class="main text-primary">Services Features</h1>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Feature about Services</h4>
-                                <a href="service_feature_add.php"><button class="btn btn-primary">Insert</button></a>
-                            </div>
-                            <div class="card-body">
-                            <div class="table-responsive">
-                                    <?php
-                                    include "configure.php";
-                                    // Pagination logic
-                                    $limit = 10;
-                                    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-                                    $offset = ($page - 1) * $limit;
-
-                                    // Fetch records
-                                    $sql = "SELECT * FROM service_features LEFT JOIN services ON service_features.services_id = services.service_id ORDER BY service_features.feature_id ASC LIMIT {$offset}, {$limit}";
-                                    $result = mysqli_query($con, $sql) or die("unsuccessful");
-
-                                    ?>
-
-                                    <table class="table table-responsive-sm">
-                                        <thead class="thead-primary">
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Service Name</th>
-                                                <th>Feature Title</th>
-                                                <th>Description</th>
-                                                <th>Edit</th>
-                                                <th>Delete</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            if (mysqli_num_rows($result) > 0) {
-                                                $serial_no = $offset+1;
-                                                while ($row = $result->fetch_assoc()) {
-                                                    echo "<tr class='text-dark'>";
-                                                    echo "<td>" . $serial_no++ . "</td>";
-                                                    echo "<td>" . htmlspecialchars($row['title']) . "</td>";
-                                                    echo "<td>" . htmlspecialchars($row['feature_name']) . "</td>";
-                                                    echo "<td>" . htmlspecialchars($row['feature_des']) . "</td>";
-                                                    echo "<td><a href='service_feature_updat.php?id=" . htmlspecialchars($row['feature_id']) . "'><button class='btn btn-warning'>Edit</button></a></td>";
-                                                    echo "<td><a href='Delet_feature_service.php?id=" . htmlspecialchars($row['feature_id']) . "'><button class='btn btn-danger'>Delete</button></a></td>";
-                                                    echo "</tr>";
-                                                }
-                                            } else {
-                                                echo "<tr><td colspan='6' class='text-center'>No data found.</td></tr>";
-                                            }
-                                            ?>
-                                        </tbody>
-                                    </table>
-                                    
-                                    <nav aria-label="Page navigation">
-                                        <?php
-                                        $sql1 = "SELECT * FROM service_features";
-                                        $result1 = mysqli_query($con, $sql1) or die("Query failed");
-                                        
-                                        if (mysqli_num_rows($result1) > 0) {
-                                            $total_records = mysqli_num_rows($result1);
-                                            $total_page = ceil($total_records / $limit);
-                                            
-                                            echo '<ul class="pagination justify-content-center">';
-                                            
-                                            // Previous button
-                                            if ($page > 1) {
-                                                echo '<li class="page-item"><a class="page-link" href="service_feature.php?page=' . ($page - 1) . '">Prev</a></li>';
-                                            }
-                                            
-                                            // Page number links
-                                            for ($i = 1; $i <= $total_page; $i++) {
-                                                $active = ($i == $page) ? "active" : "";
-                                                echo '<li class="page-item ' . $active . '"><a class="page-link" href="service_feature.php?page=' . $i . '">' . $i . '</a></li>';
-                                            }
-                                            
-                                            // Next button
-                                            if ($page < $total_page) {
-                                                echo '<li class="page-item"><a class="page-link" href="service_feature.php?page=' . ($page + 1) . '">Next</a></li>';
-                                            }
-                                            
-                                            echo '</ul>';
-                                        }
-                                        ?>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <h1 class="main text-primary">Services card Features</h1>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Feature about Services</h4>
-                                <a href="service_card_add.php"><button class="btn btn-primary">Insert</button></a>
-                            </div>
-                            <div class="card-body">
-                            <div class="table-responsive">
-                            <?php
-                            include "configure.php";
-
-                            // Pagination logic
-                            $limit = 10;
-                            $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-                            $offset = max(0, ($page - 1) * $limit);
-
-                            // Fixed SQL with correct column names
-                            $sql = "SELECT * 
-                                    FROM services_card 
-                                    LEFT JOIN services 
-                                        ON services_card.service_id = services.service_id 
-                                    ORDER BY services_card.services_card_id ASC 
-                                    LIMIT {$offset}, {$limit}";
-
-                            $result = mysqli_query($con, $sql) or die("Query failed: " . mysqli_error($con));
-                            ?>
-
-                                    <table class="table table-responsive-sm">
-                                        <thead class="thead-primary">
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Service Name</th>
-                                                <th>Card Title</th>
-                                                <th>Description</th>
-                                                <th>Icon</th>
-                                                <th>Edit</th>
-                                                <th>Delete</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            if (mysqli_num_rows($result) > 0) {
-                                                $serial_no = $offset+1;
-                                                while ($row = $result->fetch_assoc()) {
-                                                    echo "<tr class='text-dark'>";
-                                                    echo "<td>" . $serial_no++ . "</td>";
-                                                    echo "<td>" . htmlspecialchars($row['title']) . "</td>";
-                                                    echo "<td>" . htmlspecialchars($row['services_card_name']) . "</td>";
-                                                    echo "<td>" . htmlspecialchars($row['services_card_description']) . "</td>";
-                                                    echo "<td><i class='{$row['icon']}'</td>";
-                                                    echo "<td><a href='service_card_update.php?id=" . htmlspecialchars($row['services_card_id']) . "'><button class='btn btn-warning'>Edit</button></a></td>";
-                                                    echo "<td><a href='delete_service_card.php?id=" . htmlspecialchars($row['services_card_id']) . "'><button class='btn btn-danger'>Delete</button></a></td>";
-                                                    echo "</tr>";
-                                                }
-                                            } else {
-                                                echo "<tr><td colspan='6' class='text-center'>No data found.</td></tr>";
-                                            }
-                                            ?>
-                                        </tbody>
-                                    </table>
-                                    
-                                    <nav aria-label="Page navigation">
-                                        <?php
-                                        $sql1 = "SELECT * FROM services_card";
-                                        $result1 = mysqli_query($con, $sql1) or die("Query failed");
-                                        
-                                        if (mysqli_num_rows($result1) > 0) {
-                                            $total_records = mysqli_num_rows($result1);
-                                            $total_page = ceil($total_records / $limit);
-                                            
-                                            echo '<ul class="pagination justify-content-center">';
-                                            
-                                            // Previous button
-                                            if ($page > 1) {
-                                                echo '<li class="page-item"><a class="page-link" href="service_feature.php?page=' . ($page - 1) . '">Prev</a></li>';
-                                            }
-                                            
-                                            // Page number links
-                                            for ($i = 1; $i <= $total_page; $i++) {
-                                                $active = ($i == $page) ? "active" : "";
-                                                echo '<li class="page-item ' . $active . '"><a class="page-link" href="service_feature.php?page=' . $i . '">' . $i . '</a></li>';
-                                            }
-                                            
-                                            // Next button
-                                            if ($page < $total_page) {
-                                                echo '<li class="page-item"><a class="page-link" href="service_feature.php?page=' . ($page + 1) . '">Next</a></li>';
-                                            }
-                                            
                                             echo '</ul>';
                                         }
                                         ?>
@@ -562,6 +402,8 @@
                 </div>
             </div>
         </div>
+
+
 
         <!--**********************************
             Content body end

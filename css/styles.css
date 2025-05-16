@@ -5,7 +5,7 @@
 :root {
   /* New Color Palette */
   --primary-color: #2c3e50; /* Dark Blue */
-  --secondary-color: #FF9B05; /* Vibrant Red */
+  --secondary-color: #e49b38; /* Vibrant Red */
   /* --accent-color: #2b2f80; Bright Blue */
   --dark-color: #2b2f80; /* Almost Black */
   --light-color: #f5f5f5; /* Off White */
@@ -18,12 +18,12 @@
 
   /* Gradients */
   --gradient-primary: linear-gradient(135deg, #2b2f80 0%, #2b2f80 100%);
-  --gradient-secondary: linear-gradient(135deg, #e74c3c 0%, #FF9B05 100%);
+  --gradient-secondary: linear-gradient(135deg, #e74c3c 0%, #e49b38 100%);
   --gradient-accent: linear-gradient(135deg, #2b2f80 0%,#3a3e9a 30%,#4a4fb3 100%);
   
   /* Hero Background */
-  --hero-background: linear-gradient(135deg, #3d4199 0%, #2b2f80 100%);
-  --hero-overlay: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.05" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,261.3C960,256,1056,224,1152,208C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+  /* --hero-background: linear-gradient(135deg, #3d4199 0%, #2b2f80 100%);
+  --hero-overlay: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.05" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,261.3C960,256,1056,224,1152,208C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>'); */
 
   /* New Font Families */
   --font-primary: "Montserrat", sans-serif;
@@ -217,13 +217,17 @@ img {
   100% { transform: translateY(0); }
 }
 
-/* ===== ALL HERO SECTIONS ===== */
+/* ===== ALL HERO SECTIONS ===== */ 
 .portfolio-hero, .about-hero, .contact-hero, .services-hero, .service-detail-hero, .case-study-hero {
-  background: var(--hero-background);
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
   color: var(--white-color);
   padding: 150px 0 100px;
   position: relative;
   overflow: hidden;
+  /* height: 600px; from second CSS */
 }
 
 .portfolio-hero::before, .about-hero::before, .contact-hero::before, .services-hero::before, .service-detail-hero::before, .case-study-hero::before {
@@ -236,7 +240,7 @@ img {
   background: var(--hero-overlay);
   background-repeat: no-repeat;
   background-position: bottom;
-  background-size: cover;
+  background-size: 100% 100%;
   z-index: 0;
 }
 
@@ -244,7 +248,9 @@ img {
   position: relative;
   z-index: 1;
 }
-.lead{
+
+
+.lead {
   color: var(--white-color);
 }
 /* .main-heading{
@@ -374,11 +380,15 @@ img {
 
 /* ===== HERO SECTION ===== */
 #hero {
-  background: var(--hero-background);
+  background-size: 100% 100%;
+   background-position: 0 center 0;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
   color: var(--white-color);
-  min-height: 100vh;
+  /* padding: 150px 0 100px; */
   position: relative;
   overflow: hidden;
+  min-height: 100vh;
   padding: 120px 0 80px;
 }
 
@@ -389,7 +399,7 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--hero-overlay);
+  /* background: var(--hero-overlay); */
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;

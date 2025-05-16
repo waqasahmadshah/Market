@@ -7,12 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($id <= 0) die("Invalid record ID");
 
     // Get form data
-    $page_name = mysqli_real_escape_string($con, $_POST['page_name']);
+     $page_name = mysqli_real_escape_string($con, $_POST['page_name']);
     $title = mysqli_real_escape_string($con, $_POST['title']);
-    $sub_title = mysqli_real_escape_string($con, $_POST['sub_title']);
-    $description = mysqli_real_escape_string($con, $_POST['description']);
-    $button_text = mysqli_real_escape_string($con, $_POST['button_text']);
-    $button_link = mysqli_real_escape_string($con, $_POST['button_link']);
+     $description = mysqli_real_escape_string($con, $_POST['description']);
 
     // Initialize image variables
     $image_update = '';
@@ -61,10 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sql = "UPDATE hero_sections SET 
             page_name = '$page_name',
             title = '$title',
-            sub_title = '$sub_title',
-            description = '$description',
-            button_text = '$button_text',
-            button_link = '$button_link'";
+            description = '$description'";
     
     // Add image to query if new one was uploaded
     if (!empty($image_update)) {
@@ -88,6 +82,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 } else {
     // If not a POST request, redirect
-    header("Location: http://localhost/Marketxsolution/admin/hero.php");
+    header("Location: http://localhost/Marketxsolution/admin/.php");
     exit();
 }
+
+// if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+//     // Get the record ID to update
+//     $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
+//     if ($id <= 0) die("Invalid record ID");
+
+//     // Get form data
+//     $page_name = mysqli_real_escape_string($con, $_POST['page_name']);
+//     $title = mysqli_real_escape_string($con, $_POST['title']);
+//     $description = mysqli_real_escape_string($con, $_POST['description']);
+
+//     // Build the update query
+//     $sql = "UPDATE hero_sections SET 
+//             page_name = '$page_name',
+//             title = '$title',
+//             description = '$description'
+//             WHERE id = $id";
+
+//     // Execute the query
+//     if (mysqli_query($con, $sql)) {
+//         // Redirect with success status
+//         header("Location: http://localhost/Marketxsolution/admin/hero.php?status=success");
+//         exit();
+//     } else {
+//         die("Database error: " . mysqli_error($con));
+//     }
+// }
+?>
