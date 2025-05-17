@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2025 at 11:23 PM
+-- Generation Time: May 17, 2025 at 01:54 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -62,7 +62,10 @@ CREATE TABLE `brand` (
 --
 
 INSERT INTO `brand` (`id`, `name`, `image_url`, `created_at`) VALUES
-(2, 'MarketXsolution', 'Main.jpeg', '2025-05-08 06:57:31');
+(2, 'MarketXsolution', 'hero_682858fc7bcea.jpg', '2025-05-08 06:57:31'),
+(3, 'name', 'chris-kursikowski-ze5wHM9kplc-unsplash.jpg', '2025-05-17 09:39:40'),
+(4, 'X', 'boliviainteligente--exccn2LS88-unsplash.jpg', '2025-05-17 09:39:59'),
+(5, 'Toyota', 'download14.jpg', '2025-05-17 09:40:22');
 
 -- --------------------------------------------------------
 
@@ -85,7 +88,7 @@ CREATE TABLE `companycontact` (
 --
 
 INSERT INTO `companycontact` (`contact_id`, `company_id`, `address`, `email`, `website`, `phone_number`, `created_at`) VALUES
-(5, 2, 'Mohallah Saidano Qilla Tehsil Shabqadar District Charsadda', 'waqasahmad545818@gmail.com', 'www.Marketxsolution.com', '03298967888', '2025-05-12 11:25:07');
+(5, 2, 'Haq Tower, Near Liberty Mall, Tehkal Road, Peshawar', 'fahimit450@gmail.com', 'www.Marketxsolution.com', '923350055620', '2025-05-12 11:25:07');
 
 -- --------------------------------------------------------
 
@@ -112,7 +115,7 @@ CREATE TABLE `companyinfo` (
 --
 
 INSERT INTO `companyinfo` (`id`, `logo_url`, `company_name`, `company_description`, `facebook_link`, `twitter_link`, `instagram_link`, `linkedin_link`, `copyright_text`, `whatsapp`, `created_at`) VALUES
-(2, 'maket x solution-01.jpg', 'MarketXsolution', 'Creating digital experiences that elevate brands and drive business growth.', 'fg', 'fdgdsf', 'fdgs', 'fdgfd', '2025 MaretxSolution. All Rights Reserved.', '923209955837', '2025-05-11 08:52:52');
+(2, 'maket x solution-01.jpg', 'MarketXsolution', 'MarketXsolution is a digital agency offering services like website development, app creation, and online marketing to help businesses grow.', 'https://www.facebook.com/profile.php?id=61574839007874&mibextid=rS40aB7S9Ucbxw6v', 'http://localhost/Marketxsolution/admin/Compeny_info_update.php?id=2', 'https://www.instagram.com/marketxsolutions?igsh=MTFwdWk0MnRrZ29wZA==', 'https://www.linkedin.com/in/faheem-ullah-411983322?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', '2025 MaretxSolution. All Rights Reserved.', '923209955837', '2025-05-11 08:52:52');
 
 -- --------------------------------------------------------
 
@@ -138,11 +141,11 @@ CREATE TABLE `hero_sections` (
 --
 
 INSERT INTO `hero_sections` (`id`, `page_name`, `title`, `sub_title`, `description`, `image_url`, `button_text`, `button_link`, `created_at`, `updated_at`) VALUES
-(13, 'home', 'Market X Solution', 'eee', 'Where Brands Rise and Lead. We don\'t just market — we craft success. At Market X Solutions, we empower startups and growing brands to stand out, scale up and dominate the market with strategies that drive real growth and lasting impact.', 'Captur222e.PNG', '', '', '2025-05-09 04:43:42', '2025-05-09 04:43:42'),
-(14, 'about', 'Built to Empower Brands That Matter', NULL, 'We\'re a multidisciplinary digital agency on a mission to help bold businesses thrive in a digital-first world. From strategy to pixel-perfect execution, we believe great work starts with a great relationship.', 'hero_682617ae20a20.jpeg', '', '', '2025-05-09 05:05:08', '2025-05-15 16:37:58'),
-(15, 'service', 'Tailored Solutions for Modern Brands', NULL, 'We offer comprehensive digital services to help your business thrive in today\'s competitive landscape.', 'hero_682618454dc6e.png', '', '', '2025-05-09 05:05:45', '2025-05-15 16:37:25'),
-(16, 'contact', 'Let\'s Create Something Great', NULL, 'Have an idea? A challenge? A brand to build? Let\'s talk.', 'hero_6826188ff4200.png', NULL, NULL, '2025-05-09 05:13:06', '2025-05-15 16:38:40'),
-(17, 'portfolio', 'Crafted with Purpose', NULL, 'Explore our portfolio of award-winning projects that drive real results for our clients.', 'hero_6826189ca4f8d.png', NULL, NULL, '2025-05-09 05:13:44', '2025-05-15 16:38:52');
+(13, 'home', 'Market X Solution', 'eee', 'Where Brands Rise and Lead. We don\'t just market — we craft success. At Market X Solutions, we empower startups and growing brands to stand out, scale up and dominate the market with strategies that drive real growth and lasting impact.', 'hero_6828263eb4e0c.jpg', '', '', '2025-05-09 04:43:42', '2025-05-17 06:01:34'),
+(14, 'about', 'Built to Empower Brands That Matter', NULL, 'We\'re a multidisciplinary digital agency on a mission to help bold businesses thrive in a digital-first world. From strategy to pixel-perfect execution, we believe great work starts with a great relationship.', 'hero_68282771afa58.jpg', '', '', '2025-05-09 05:05:08', '2025-05-17 06:06:41'),
+(15, 'service', 'Tailored Solutions for Modern Brands', NULL, 'We offer comprehensive digital services to help your business thrive in today\'s competitive landscape.', 'hero_68282a2157575.jpg', '', '', '2025-05-09 05:05:45', '2025-05-17 06:18:09'),
+(16, 'contact', 'Let\'s Create Something Great', NULL, 'Have an idea? A challenge? A brand to build? Let\'s talk.', 'hero_68282a34a0e5b.jpg', NULL, NULL, '2025-05-09 05:13:06', '2025-05-17 06:18:28'),
+(17, 'portfolio', 'Crafted with Purpose', NULL, 'Explore our portfolio of award-winning projects that drive real results for our clients.', 'hero_68282a481e4cf.jpg', NULL, NULL, '2025-05-09 05:13:44', '2025-05-17 06:18:48');
 
 -- --------------------------------------------------------
 
@@ -245,32 +248,20 @@ INSERT INTO `ourvalues` (`id`, `name`, `client`, `progress`, `description`, `ico
 CREATE TABLE `portfolio` (
   `portfolio_id` int(11) NOT NULL,
   `portfolio_name` varchar(255) NOT NULL,
-  `project_name` varchar(250) NOT NULL,
   `portfolio_sub` varchar(255) DEFAULT NULL,
-  `portfolio_description` text DEFAULT NULL,
   `image_urle` varchar(255) DEFAULT NULL,
   `service_id` int(11) DEFAULT NULL,
+  `project_link` varchar(250) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `status` enum('active','completed','on-hold') DEFAULT 'active',
-  `progress` int(11) DEFAULT 0,
-  `priority` enum('high','medium','low') DEFAULT 'medium',
-  `deadline` date DEFAULT NULL,
-  `team_id` int(11) DEFAULT NULL,
-  `project_category` varchar(50) DEFAULT NULL
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `portfolio`
 --
 
-INSERT INTO `portfolio` (`portfolio_id`, `portfolio_name`, `project_name`, `portfolio_sub`, `portfolio_description`, `image_urle`, `service_id`, `created_at`, `updated_at`, `status`, `progress`, `priority`, `deadline`, `team_id`, `project_category`) VALUES
-(7, 'Wavely App', '', 'Rebrand + Product UX', 'sdfsadaffd', 'Cadfdfpture.PNG', 11, '2025-05-10 08:22:42', '2025-05-10 08:22:42', 'active', 0, 'medium', NULL, NULL, NULL),
-(8, 'Stone Agency', '', 'Full identity + site', 'dsfdsfaf', 'Cadfdfpture.PNG', 11, '2025-05-10 08:23:12', '2025-05-10 08:23:12', 'active', 0, 'medium', NULL, NULL, NULL),
-(9, 'Fusion Restaurant', '', 'Branding + Website', 'ascsa', 'Cadfdfpture.PNG', 11, '2025-05-10 08:23:47', '2025-05-10 08:23:47', 'active', 0, 'medium', NULL, NULL, NULL),
-(10, 'Pulse Dashboard', '', 'UX/UI + Development', 'fsdafaadsfdsf', 'Cadfdfpture.PNG', 12, '2025-05-10 08:24:47', '2025-05-10 08:24:47', 'active', 0, 'medium', NULL, NULL, NULL),
-(11, 'Fusion Restaurant', '', 'Branding + Website', 'sfdsdfas', 'Captur222e.PNG', 12, '2025-05-10 08:25:38', '2025-05-10 08:25:38', 'active', 0, 'medium', NULL, NULL, NULL),
-(12, 'Bloom Skincare', '', 'Digital Marketing Campaign', 'fdfddsdfdsaf', 'Cadfdfpture.PNG', 13, '2025-05-10 08:26:35', '2025-05-10 08:26:35', 'active', 0, 'medium', NULL, NULL, NULL);
+INSERT INTO `portfolio` (`portfolio_id`, `portfolio_name`, `portfolio_sub`, `image_urle`, `service_id`, `project_link`, `created_at`, `updated_at`) VALUES
+(7, 'Evomed Healthcare', 'Webiste + Health Care', 'hero_68284f02d07ea.png', 12, 'https://evomedhealthcare.com/contact-us-3/', '2025-05-10 08:22:42', '2025-05-17 08:58:05');
 
 -- --------------------------------------------------------
 
@@ -354,13 +345,13 @@ CREATE TABLE `services` (
 --
 
 INSERT INTO `services` (`service_id`, `title`, `short_desc`, `description`, `icon_class`, `image_url`) VALUES
-(11, 'Social Media Management', 'Shape how the world sees you with a brand that resonates and endures.', 'In today\'s digital landscape, your website is often the first interaction potential customers have with your brand. We design and develop websites that make powerful first impressions and continue to engage users throughout their journey.\r\nOur web development team combines technical expertise with creative design to build custom websites that are not only visually stunning but also strategically crafted to achieve your business goals.', 'fas fa-paint-brush', 'Cadfdfpture.PNG'),
-(12, 'Web Development', 'Fast, responsive, custom-built websites that put your brand at center stage.', 'In today\'s digital landscape, your website is often the first interaction potential customers have with your brand. We design and develop websites that make powerful first impressions and continue to engage users throughout their journey.\r\n\r\nOur web development team combines technical expertise with creative design to build custom websites that are not only visually stunning but also strategically crafted to achieve your business goals.', 'fas fa-laptop-code', 'Capture1.PNG'),
-(13, 'Search Engine Optimization  (SEO)', 'Drive traffic, generate leads, and grow your business with data-led campaigns.', 'Digital marketing is the heartbeat of modern business — it connects you with the right audience at the right time. With smart strategies across social media, email, and online ads, you can drive more traffic, boost engagement, and grow faster than ever.\r\nSEO is the secret weapon behind every top-ranking brand. By optimizing your website and content, you not only climb higher on Google but also attract quality leads who are ready to take action. Stay visible, stay ahead.', 'fas fa-chart-line', 'PicsArt_04-23-07.35.31_1619167143722.jpg'),
-(14, 'App Development ', 'Designing intuitive, user-centric interfaces for seamless digital experiences.', 'A smart UI/UX strategy transforms how users experience your brand. It’s about creating intuitive, beautiful designs that not only look good but guide users effortlessly — turning visitors into loyal customers.\r\nGreat UI/UX is more than design — it’s understanding people. With the right strategy, every click, swipe, and scroll feels natural, keeping users engaged, satisfied, and coming back for more.', 'fas fa-mobile-alt', 'PicsArt_04-25-11.21.14.jpg'),
-(15, 'Graphic Designing', 'Messaging that speaks your audience\'s language—and inspires action.', 'Words have power — the right content captures attention, builds trust, and drives action. Great copywriting doesn’t just sell; it tells your story in a way that connects, inspires, and converts.\r\nWhether it’s a bold headline or a persuasive blog post, strong content turns browsers into buyers. With smart copywriting, every word works harder to grow your brand and leave a lasting impact.', 'fas fa-pen-fancy', 'Cadfdfpture.PNG'),
-(16, 'Google Ads', 'Build community and drive engagement across all platforms.', 'Social media management isn’t just posting — it’s building real connections that grow your brand. With the right strategy, you can turn followers into loyal customers and stand out in a crowded digital world.\r\nMake your brand unforgettable with smart, engaging social media. From creative content to real-time interactions, powerful management drives visibility, trust, and real results.', 'fas fa-bullhorn', 'Cadfdfpture.PNG'),
-(17, 'Content Writing', 'fsdf', 'sadfasd', 'asdfsda', 'Capture1.PNG');
+(11, 'Social Media Management', 'Managing and growing your brand on social platforms.', 'Social Media Management involves the creation, scheduling, publishing, and analysis of content posted across social media platforms such as Instagram, Facebook, Twitter, LinkedIn, and others. It goes beyond just posting updates; it includes engaging with followers, responding to comments and messages, monitoring trends, and leveraging data insights to refine strategy. This discipline ensures a consistent brand voice and helps businesses effectively reach and grow their online communities.\r\n\r\nEffective social media management can drive brand awareness, foster customer loyalty, and generate leads or sales. It combines creative content development with analytical tools to track performance and optimize campaigns. Whether done in-house or through an agency, successful management requires a clear understanding of the brand’s goals, audience behavior, and platform-specific best practices.', 'fas fa-paint-brush', 'hero_682834d1f28fc.png'),
+(12, 'Web Development', 'Building responsive and user-friendly websites.', 'Web Development is the process of creating and maintaining websites and web applications. It encompasses everything from coding the structure and layout using HTML, CSS, and JavaScript, to developing advanced functionality with backend technologies like PHP, Python, Node.js, or databases like MySQL and MongoDB. Web development can range from building a simple static webpage to complex dynamic platforms such as e-commerce stores, social networks, or content management systems.\r\n\r\nA strong web development process ensures a seamless user experience, fast loading times, and mobile responsiveness. Developers often work closely with designers and stakeholders to bring digital visions to life while focusing on accessibility, security, and scalability. Whether it\'s a corporate site, a personal blog, or a custom web app, web development is a foundational element of the modern digital landscape.', 'fas fa-laptop-code', 'hero_682834be65b60.png'),
+(13, 'Search Engine Optimization  (SEO)', 'Improving website visibility on search engines.', 'Search Engine Optimization (SEO) is the practice of enhancing a website’s content, structure, and technical performance to improve its ranking in search engine results pages (SERPs). By targeting relevant keywords, optimizing on-page elements like meta tags and headers, and building high-quality backlinks, SEO helps websites attract more organic (non-paid) traffic from users actively searching for related topics or services.\r\n\r\nEffective SEO involves a combination of on-page optimization (such as content creation, keyword usage, and internal linking), off-page strategies (like link-building and social signals), and technical improvements (including site speed, mobile-friendliness, and secure connections). SEO is a long-term strategy that not only increases visibility but also builds trust and credibility with audiences, making it an essential part of any digital marketing plan.', 'fas fa-chart-line', 'hero_682834efdaa6c.png'),
+(14, 'App Development ', 'Designing visuals that capture and communicate.', 'App Development is the process of designing, building, testing, and deploying software applications for platforms such as iOS, Android, or desktop environments. It involves both front-end (user interface and experience) and back-end (server, database, and logic) development. Developers use programming languages like Swift, Kotlin, Java, Flutter, or React Native, depending on the target platform and functionality required.\r\n\r\nThe goal of app development is to deliver intuitive, reliable, and efficient applications that solve problems or add value for users. This can include everything from simple productivity tools to complex enterprise systems or interactive games. A well-developed app combines thoughtful design with technical robustness, providing seamless performance, strong security, and regular updates to meet evolving user needs and technological standards.', 'fas fa-mobile-alt', 'hero_682835440f19b.jpg'),
+(15, 'Graphic Designing', 'Designing visuals that capture and communicate.', 'Graphic Designing is the art and practice of planning and creating visual content to convey ideas and information. It involves combining elements like text, images, icons, and colors to produce designs for both digital and print mediums—such as social media graphics, logos, brochures, websites, advertisements, and packaging. Designers use tools like Adobe Photoshop, Illustrator, and Canva to bring their concepts to life in a visually appealing and brand-consistent way.\r\n\r\nBeyond aesthetics, graphic design serves a functional purpose: guiding user attention, enhancing communication, and evoking specific emotions or actions. Whether creating a brand identity or designing marketing materials, graphic design plays a critical role in how a business or message is perceived by its audience. A well-crafted design not only looks good but also effectively communicates and connects with its target viewers.', 'fas fa-pen-fancy', 'hero_68283579920f0.jpg'),
+(16, 'Google Ads', 'Running targeted ads to drive traffic and sales.', 'Google Ads is an online advertising platform developed by Google, where businesses can create and run ads to appear on Google Search, YouTube, and across a vast network of partner websites. It operates on a pay-per-click (PPC) model, meaning advertisers only pay when someone clicks on their ad. With advanced targeting options based on keywords, demographics, location, interests, and device types, Google Ads helps businesses reach the right audience at the right time.\r\n\r\nThis platform offers various ad formats, including search ads, display banners, shopping ads, video ads, and app promotion campaigns. Google Ads is a powerful tool for increasing brand visibility, driving website traffic, and generating leads or sales. Its detailed analytics and optimization tools allow advertisers to track performance and refine campaigns for maximum ROI, making it a core component of digital marketing strategies.', 'fas fa-bullhorn', 'hero_682835f96e445.png'),
+(17, 'Content Writing', 'Writing content that informs, engages, and converts.', 'Content Writing is the process of producing written material for digital and print platforms, such as websites, blogs, social media, emails, product descriptions, and marketing campaigns. The goal is to deliver clear, compelling, and relevant messages that resonate with the intended audience. This involves understanding the brand voice, researching topics, and structuring content in a way that is both informative and engaging.\r\n\r\nEffective content writing not only educates or entertains but also drives specific actions—whether it\'s generating leads, boosting SEO rankings, or building brand authority. Writers often tailor content to align with business goals, user intent, and platform-specific guidelines. Quality content is the foundation of successful online presence and plays a crucial role in customer engagement, trust-building, and conversion.', 'asdfsda', 'hero_68283609e9a9d.jpg');
 
 -- --------------------------------------------------------
 
@@ -383,10 +374,27 @@ CREATE TABLE `services_card` (
 --
 
 INSERT INTO `services_card` (`services_card_id`, `services_card_name`, `services_card_description`, `icon`, `service_id`, `created_at`, `updated_at`) VALUES
-(1, 'fdgad', 'Ali shah dfjlsdadfjsdlf', 'fas fa-briefcase', 11, '2025-05-06 14:10:05', '2025-05-06 14:49:31'),
-(3, 'waqas', 'fdsff', 'fas fa-briefcase', 11, '2025-05-06 14:38:02', '2025-05-06 14:52:37'),
-(4, 'dfdsaa', 'dsafsd', 'dsafdsa', 11, '2025-05-10 05:38:33', '2025-05-10 05:38:33'),
-(5, 'cxzv', 'xzcvxzc', 'xczvcx', 13, '2025-05-10 05:39:04', '2025-05-10 05:39:04');
+(1, 'Hootsuite', 'Hootsuite offers a powerful suite of tools for scheduling, publishing, and monitoring social media content across multiple platforms.\r\n', 'fas fa-chart-line', 11, '2025-05-06 14:10:05', '2025-05-17 08:20:42'),
+(3, 'Sprout Social', 'Sprout Social combines automation with deep analytics and CRM functionality, making it ideal for brands that rely on data to drive growth.', 'fas fa-bullseye', 11, '2025-05-06 14:38:02', '2025-05-17 08:21:20'),
+(4, ' Buffer', 'Buffer is perfect for individuals or small teams looking for an easy-to-use platform without sacrificing essential features.', 'fas fa-leaf', 11, '2025-05-10 05:38:33', '2025-05-17 08:22:04'),
+(6, 'E-Commerce Website Development', 'Build scalable and secure online stores with features like payment gateways, inventory management, and product catalogs.', 'fas fa-shopping-cart', 12, '2025-05-17 08:24:33', '2025-05-17 08:24:33'),
+(7, 'Blog & Content Websites ', 'Custom blog platforms with easy content management systems and modern layouts.', 'fas fa-blog', 12, '2025-05-17 08:25:35', '2025-05-17 08:25:35'),
+(8, 'Portfolio Website ', 'Development Create stunning personal or creative portfolios to showcase your work, skills, and brand.', 'fas fa-user', 12, '2025-05-17 08:26:20', '2025-05-17 08:26:20'),
+(9, ' On-Page SEO', 'Optimizing individual web pages to rank higher and earn more relevant traffic in search engines.', 'fas fa-file-alt', 13, '2025-05-17 08:28:06', '2025-05-17 08:28:06'),
+(11, 'Technical SEO', 'Improving the technical aspects of your website to ensure search engines can crawl and index it effectively.', 'fas fa-cogs', 13, '2025-05-17 08:29:01', '2025-05-17 08:29:01'),
+(12, 'Off-Page SEO', 'Building domain authority and trust through external signals and link-building strategies.', 'fas fa-link', 13, '2025-05-17 08:29:34', '2025-05-17 08:29:34'),
+(13, 'Native Mobile App Development', 'Creating high-performance apps specifically for iOS or Android platforms using Swift, Kotlin, or Java.', 'fas fa-mobile-alt', 14, '2025-05-17 08:31:19', '2025-05-17 08:31:19'),
+(14, 'Cross-Platform App Development', 'Building apps that work seamlessly across multiple platforms (iOS, Android, web) using frameworks like React Native or Flutter.', 'fas fa-code', 14, '2025-05-17 08:32:11', '2025-05-17 08:32:11'),
+(16, 'Enterprise App Development', 'Custom apps designed to improve business workflows, employee productivity, and internal communications.', 'fas fa-users-cog', 14, '2025-05-17 08:33:31', '2025-05-17 08:33:31'),
+(17, ' Logo Design', 'Crafting unique and memorable logos that reflect your brand identity.', 'fas fa-paint-brush', 15, '2025-05-17 08:34:53', '2025-05-17 08:34:53'),
+(18, 'Marketing & Advertising Design', 'Creating eye-catching flyers, posters, banners, and social media graphics to boost campaigns.', 'fas fa-bullhorn', 15, '2025-05-17 08:35:57', '2025-05-17 08:35:57'),
+(19, 'Brand Identity Design', 'Designing cohesive visual branding including color palettes, typography, and style guides.\r\n\r\n', 'fas fa-vector-square', 15, '2025-05-17 08:36:43', '2025-05-17 08:36:43'),
+(20, 'Search Ads', 'Target potential customers actively searching on Google with text ads appearing in search results.', 'fas fa-search', 16, '2025-05-17 08:37:36', '2025-05-17 08:37:36'),
+(21, 'Shopping Ads', 'Promote your products directly in Google search results with rich product listings.', 'fas fa-shopping-cart', 16, '2025-05-17 08:38:12', '2025-05-17 08:38:12'),
+(22, 'Video Ads', 'Engage audiences with video advertisements on YouTube and other Google partner sites.', 'fas fa-video', 16, '2025-05-17 08:39:38', '2025-05-17 08:41:42'),
+(23, 'Blog & Article Writing', 'Creating engaging and SEO-friendly blog posts and articles to attract and educate your audience.', 'fas fa-file-alt', 17, '2025-05-17 08:42:38', '2025-05-17 08:42:38'),
+(24, 'Website Content Writing', 'Crafting clear, persuasive, and brand-aligned copy for your website pages.', 'fas fa-book-open', 17, '2025-05-17 08:43:11', '2025-05-17 08:43:11'),
+(25, 'Copywriting & Marketing Content', 'Creating persuasive sales copy, ads, and marketing materials that convert visitors into customers.', 'fas fa-file-signature', 17, '2025-05-17 08:43:46', '2025-05-17 08:43:46');
 
 -- --------------------------------------------------------
 
@@ -406,24 +414,27 @@ CREATE TABLE `service_features` (
 --
 
 INSERT INTO `service_features` (`feature_id`, `services_id`, `feature_name`, `feature_des`) VALUES
-(26, 11, 'Brand Strategy & Positioning', 'In today\'s digital landscape, your website is often the first interaction potential customers have with your brand. We design and develop websites that make powerful first impressions and continue to engage users throughout their journey.\r\n'),
-(27, 11, 'Logo & Visual Identity', 'fgdfg'),
-(28, 11, 'Brand Guidelines', 'dfsdf'),
-(29, 12, 'Custom Website Design', 'sadsada'),
-(30, 12, 'E-commerce Solutions', 'sfdsdfsff'),
-(31, 12, ' CMS Integration', 'fdsfsadf'),
-(32, 13, 'Search Engine Optimization', 'dadfsdf'),
-(33, 13, 'PPC & Social Media Ads', 'dgfds'),
-(34, 13, ' Analytics & Reporting', 'sdfsdfsdaf'),
-(35, 14, 'User Research & Testing', 'sadssa'),
-(36, 14, ' Wireframing & Prototyping', 'sadfds'),
-(37, 14, 'Interface Design', 'dfasddddsdaf'),
-(38, 15, 'Website Copy', 'fdfsadfsdf'),
-(39, 15, 'Blog & Article Writing', 'fdssafsdf'),
-(40, 15, 'Email Campaigns', 'dsadfsdsfdsf'),
-(41, 16, 'Content Strategy', 'sfddsfsd'),
-(42, 16, 'Community Management', 'dsfdsf'),
-(43, 16, 'Performance Analytics', 'sdafsdf');
+(26, 11, 'Brand Strategy & Positioning', 'Defines the unique value and market position that sets a brand apart from competitors.'),
+(27, 11, 'Logo & Visual Identity', 'Creates the core visual elements that represent and distinguish the brand.'),
+(28, 11, 'Brand Guidelines', 'Provides a comprehensive set of rules to ensure consistent and cohesive brand usage.'),
+(29, 12, 'Custom Website Design', 'Tailored website layouts and features crafted to reflect your brand’s unique identity and goals.'),
+(30, 12, 'E-commerce Solutions', 'End-to-end online store setup and management to drive sales and customer engagement.'),
+(31, 12, ' CMS Integration', 'Seamless implementation of content management systems for easy website updates and control.'),
+(32, 13, 'Search Engine Optimization', 'Optimizing your website to improve visibility and ranking on search engines.'),
+(33, 13, 'PPC & Social Media Ads', 'Targeted paid campaigns to boost traffic and engagement across platforms.'),
+(34, 13, ' Analytics & Reporting', 'Tracking and analyzing data to measure performance and guide strategic decisions.'),
+(35, 14, 'User-Friendly Interface', 'Intuitive design that ensures smooth and engaging user interactions.'),
+(36, 14, 'Cross-Platform Compatibility', 'Built to run seamlessly across multiple devices and operating systems.'),
+(37, 14, 'Real-Time Updates & Notifications', 'Instant information delivery to keep users informed and engaged.'),
+(38, 15, 'Creative Visual Concepts', 'Innovative and original designs that capture attention and convey your message effectively.'),
+(39, 15, 'Brand Consistency', 'Maintaining uniform style and tone across all visuals to strengthen brand identity.'),
+(40, 15, 'High-Quality Output', 'Crisp, professional designs optimized for both digital and print use.'),
+(41, 16, 'Targeted Audience Reach', 'Deliver ads to specific demographics, locations, and interests for maximum relevance.'),
+(42, 16, 'Performance-Based Budgeting', 'Control costs by only paying for actual clicks or conversions that meet your goals.'),
+(43, 16, 'Real-Time Analytics & Insights', 'Access up-to-the-minute data to track ad performance and optimize campaigns effectively.'),
+(44, 17, 'Engaging & Relevant Copy', 'Crafts compelling content tailored to capture attention and resonate with your audience.'),
+(45, 17, 'SEO-Optimized Content', 'Strategically written to improve search engine visibility and drive organic traffic.'),
+(46, 17, 'Brand-Aligned Tone & Voice', 'Maintains a consistent style that reflects your brand’s personality and values.');
 
 -- --------------------------------------------------------
 
@@ -449,9 +460,7 @@ CREATE TABLE `teammember` (
 --
 
 INSERT INTO `teammember` (`id`, `name`, `position`, `image_url`, `created_at`, `status`, `facebook_url`, `linkedin_url`, `instagram_url`, `phone_no`) VALUES
-(2, 'waqas ahmad', 'web developer', 'hero_681c46c25570e.jpeg', '2025-05-08 05:34:32', 'active', '', '', '', '03209955837'),
-(4, 'Faheem Ullah', 'Founder of MarketXsolution', 'IMG-20250316-WA0035.jpg', '2025-05-10 13:40:18', 'active', '', '', '', '2147483647'),
-(5, 'ewrw', 'cvxzcv', 'Main.jpeg', '2025-05-13 14:51:28', 'active', '', '', '', '2147483647');
+(2, 'Faheem Ullah', 'Founder', 'team_682851ab2b0d9.jpg', '2025-05-08 05:34:32', 'active', 'https://www.facebook.com/profile.php?id=100094976895577', 'https://www.linkedin.com/in/faheem-ullah-411983322?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', 'https://www.instagram.com/not_faheem_khan?igsh=MWZkcGZqYWx6YzlhNw==', '03209955837');
 
 -- --------------------------------------------------------
 
@@ -485,7 +494,7 @@ CREATE TABLE `testimonial` (
 --
 
 INSERT INTO `testimonial` (`id`, `name`, `position`, `description`, `image_url`, `created_at`) VALUES
-(2, 'waqas', 'web developer', 'this product is very high quality djsflksafj;lsaf shfflsdfs my nam eis waqasx ahamd ahahs ajdlfdsfljgjljfsdfsf', 'Main.jpeg', '2025-05-08 05:11:49');
+(2, 'Faheem Ullah', 'Professor', 'The agency website is visually appealing and easy to navigate, but it could benefit from clearer calls-to-action and faster load times.', 'hero_68285bd3d6ea0.jpg', '2025-05-08 05:11:49');
 
 -- --------------------------------------------------------
 
@@ -511,9 +520,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `email`, `password_hash`, `full_name`, `date_of_birth`, `phone_number`, `created_at`, `updated_at`, `profile_picture_url`) VALUES
-(1, 'admin111', 'waqasahmad523@gmail.com', 'waqasahmad', 'waqas ;ahmad shah', '2015-05-01', '03209955837', '2025-05-08 13:52:56', '2025-05-14 05:53:14', 'hero_681cc7aa6e36d.png'),
-(3, 'waqasahamdshah', ' waqasahmad545818@gmail.com', '456789', 'Waqas Ahmad Shah', '2025-05-15', '03209955837', '2025-05-08 14:29:31', '2025-05-08 14:57:02', 'Main.jpeg'),
-(4, 'kaleem ullah', 'waqasahmad545818@gmail.com', 'admin123', 'Waqas Ahmad Shah', '2025-01-24', '03209955837', '2025-05-08 16:15:11', '2025-05-09 04:07:56', 'Main.jpeg');
+(1, 'faheem ullah', 'fahimit450@gmail.com', 'Faheemullah890', 'Faheem Ullah', '2015-05-01', '03350055620', '2025-05-08 13:52:56', '2025-05-17 09:22:08', 'hero_682853c072589.jpg');
 
 -- --------------------------------------------------------
 
@@ -693,13 +700,13 @@ ALTER TABLE `aboutus`
 -- AUTO_INCREMENT for table `brand`
 --
 ALTER TABLE `brand`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `companycontact`
 --
 ALTER TABLE `companycontact`
-  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `companyinfo`
@@ -771,13 +778,13 @@ ALTER TABLE `services`
 -- AUTO_INCREMENT for table `services_card`
 --
 ALTER TABLE `services_card`
-  MODIFY `services_card_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `services_card_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `service_features`
 --
 ALTER TABLE `service_features`
-  MODIFY `feature_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `feature_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `teammember`
