@@ -3,13 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="./assests/WhatsApp Image 2025-04-22 at 1.57.27 PM.jpeg">
-  <title>Our Services | MaretxSolutions - Creative Digital Agency</title>
+  <title>MarketxSolutions | Creative Digital Agency</title>
+  <meta name="description" content="MarketxSolutions is a creative digital agency delivering innovative solutions in web design, development, branding, and digital marketing.">
+  <meta name="keywords" content="MarketxSolutions, digital agency, creative agency, web development, branding, SEO, digital marketing">
+  <meta name="author" content="MarketxSolutions">
+  <meta property="og:title" content="MarketxSolutions | Creative Digital Agency">
+  <meta property="og:description" content="Creative digital solutions for your brand. We specialize in web development, SEO, branding, and marketing.">
+  <meta property="og:image" content="https://yourwebsite.com/path-to-social-image.jpg">
+  <meta property="og:url" content="https://yourwebsite.com">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" href="./assets/WhatsApp Image 2025-04-22 at 1.57.27 PM.jpeg">
 
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" href="./css/aos.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/owl.carousal.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
   <link rel="stylesheet" href="css/styles.css">
   
 
