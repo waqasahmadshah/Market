@@ -325,7 +325,7 @@ if (!isset($_SESSION['user_id'])) {
                                                 <th>Project Name</th>
                                                 <th>Category</th>
                                                 <th>service_area</th>
-                                                <th>Description</th>
+                                                <th>Url</th>
                                                 <th>image</th>
                                                 <th>Edit</th>
                                                 <th>Delete</th>
@@ -341,7 +341,7 @@ if (!isset($_SESSION['user_id'])) {
                                                     echo "<td>" . htmlspecialchars($row['portfolio_name']) . "</td>";
                                                     echo "<td>" . htmlspecialchars($row['title']) . "</td>";
                                                     echo "<td>" . htmlspecialchars($row['portfolio_sub']) . "</td>";
-                                                    echo "<td>" . htmlspecialchars($row['portfolio_description']) . "</td>";
+                                                    echo "<td>" . htmlspecialchars($row['project_link']) . "</td>";
                                                     echo "<td><img src='upload/" . htmlspecialchars($row['image_urle']) . "' width='50' height='50' style='object-fit: cover;'></td>";
 
                                                     echo "<td><a href='portfolio_update.php?id=" . htmlspecialchars($row['portfolio_id']) . "'><button class='btn btn-warning'>Edit</button></a></td>";

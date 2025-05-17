@@ -70,7 +70,7 @@
       
   ?>
   <section class="about-hero" style="background-image:
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(20, 12, 68, 0.5)),
+    linear-gradient(rgba(14, 5, 70, 0.6)),
     url('./Admin/upload/<?php echo htmlspecialchars($row['image_url'])?>');">
     <div class="container">
       <div class="row">
@@ -275,6 +275,7 @@
   </section>
 
    <!-- Footer -->
+ <!-- Footer -->
   <footer class="footer">
     <div class="container-fluid px-5">
       <div class="row pt-5 justify-content-between">
@@ -289,8 +290,7 @@
             <h3 class="footer-logo"><?php echo htmlspecialchars($row['company_name']);?></h3>
             <p><?php echo htmlspecialchars($row['company_description']);?></p>
             <div class="social-links mt-3">
-              <a href="<?php echo htmlspecialchars($row['facebook_link']);?>"><i class="fab fa-twitter"></i></a>
-              <a href="<?php echo htmlspecialchars($row['twitter_link']);?>"><i class="fab fa-facebook-f"></i></a>
+              <a href="<?php echo htmlspecialchars($row['facebook_link']);?>"><i class="fab fa-facebook-f"></i></a>
               <a href="<?php echo htmlspecialchars($row['instagram_link']);?>"><i class="fab fa-instagram"></i></a>
               <a href="<?php echo htmlspecialchars($row['linkedin_link']);?>"><i class="fab fa-linkedin-in"></i></a>
             </div>
@@ -311,11 +311,12 @@
           </div>
         </div>
         <div class="col-lg-3 col-md-6">
-          <div class="footer-links">
+          <div class="row">
+            <div class="footer-links">
             <h4>Services</h4>
             <ul>
             <?php 
-              $sql="SELECT * FROM services WHERE service_id";
+              $sql="SELECT * FROM services WHERE service_id limit 5";
               $result=mysqli_query($con,$sql) or die("unsucessful");
               if(mysqli_num_rows($result)>0){
                 while($row=$result->fetch_assoc()){
@@ -325,12 +326,14 @@
               <?php } } ?>
             </ul>
           </div>
+          </div>
+          
         </div>
         <div class="col-lg-3 col-md-6">
           <div class="footer-links">
             <h4>Contact Now</h4>
             <?php 
-              $sql="SELECT * FROM companycontact limit 1";
+              $sql="SELECT * FROM companycontact";
               $result=mysqli_query($con,$sql) or die("unsucessful");
               if(mysqli_num_rows($result)>0){
                 while($row=$result->fetch_assoc()){
@@ -383,15 +386,22 @@
     </div>
   </footer>
 
+
+<!-- WhatsApp -->
+<?php
+    $result = mysqli_query($con, "SELECT whatsapp FROM companyinfo LIMIT 1");
+    if ($row = $result->fetch_assoc()):
+  ?>
+  <a href="https://wa.me/<?= $row['whatsapp'] ?>" class="whatsapp-link" target="_blank" aria-label="Contact via WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+<?php endif; ?>
+
   <!-- Back to top button -->
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
     <i class="fas fa-arrow-up"></i>
   </a>
 
-  <!-- whatsapp link -->
-  <a  href="https://wa.me/923350055620?"  class="whatsapp-link" target="_blank" aria-label="Contact via WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </a>
   <!-- Scripts -->
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/aos.js"></script>

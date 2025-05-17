@@ -24,6 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         die("Database error: " . mysqli_error($con));
     }
 } else {
-    header("Location: http://localhost/Marketxsolution/admin/.php");
+    header("Location: approches.php");
     exit();
 }

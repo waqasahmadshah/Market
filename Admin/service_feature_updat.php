@@ -354,18 +354,10 @@ if (!isset($_SESSION['user_id'])) {
                         <?php endif; ?>
 
                         <!-- Title and Sub-title -->
-                         <style>
-                            #hi:hover::after{
-                                content:"Read Only";
-                                color:red;
-                                font-size:15px;
-                                padding:5px;
-                            }
-                         </style>
                         <div class="mb-3" id="hi">
                             <label for="title" class="form-label">Service Name</label>
                             <input type="text" name="service" class="form-control" id="title" 
-                                value="<?= htmlspecialchars($row['title']) ?>" readonly>
+                                value="<?= htmlspecialchars($row['title']) ?>">
                         </div>
                         
                         <div class="mb-3">
@@ -378,7 +370,7 @@ if (!isset($_SESSION['user_id'])) {
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
                             <textarea name="description" class="form-control" id="description" 
-                                    rows="4" required><?= htmlspecialchars($row['description']) ?></textarea>
+                                    rows="4" required><?= htmlspecialchars($row['feature_des']) ?></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Update</button>

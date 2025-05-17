@@ -370,19 +370,19 @@ if (!isset($_SESSION['user_id'])) {
                         </div>
                         <div class="mb-3">
                             <label for="Facebook" class="form-label">Facebook link</label>
-                            <input type="text" name="Facebook" class="form-control" id="Facebook" value="<?php echo htmlspecialchars($row['facebook_link']);?>" required>
+                            <input type="url" name="Facebook" class="form-control" id="Facebook" value="<?php echo htmlspecialchars($row['facebook_link']);?>" required>
                         </div>
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label for="Twitter" class="form-label">Twitter link</label>
-                            <input type="text" name="Twitter" class="form-control" id="Twitter" value="<?php echo htmlspecialchars($row['twitter_link']);?>" required>
-                        </div>
+                            <input type="url" name="Twitter" class="form-control" id="Twitter" value="<?php echo htmlspecialchars($row['twitter_link']);?>" required>
+                        </div> -->
                         <div class="mb-3">
                             <label for="Instagram" class="form-label">Instagram link</label>
-                            <input type="text" name="Instagram" class="form-control" id="Instagram" value="<?php echo htmlspecialchars($row['instagram_link']);?>" required>
+                            <input type="url" name="Instagram" class="form-control" id="Instagram" value="<?php echo htmlspecialchars($row['instagram_link']);?>" required>
                         </div>
                         <div class="mb-3">
                             <label for="LinkedIn" class="form-label">LinkedIn link</label>
-                            <input type="text" name="LinkedIn" class="form-control" id="LinkedIn" value="<?php echo htmlspecialchars($row['linkedin_link']);?>" required>
+                            <input type="url" name="LinkedIn" class="form-control" id="LinkedIn" value="<?php echo htmlspecialchars($row['linkedin_link']);?>" required>
                         </div>
 
                         

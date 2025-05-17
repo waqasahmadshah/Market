@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Only process if file was actually uploaded
         if ($file['error'] == UPLOAD_ERR_OK) {
             $allowed_types = ["jpeg", "jpg", "png"];
-            $max_size = 2 * 1024 * 1024; // 2MB
+            $max_size = 12 * 1024 * 1024; // 2MB
             
             // Get file extension
             $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             
             if ($file['size'] > $max_size) {
-                die("Error: File must be 2MB or smaller.");
+                die("Error: File must be 12MB or smaller.");
             }
             
             // Generate unique filename

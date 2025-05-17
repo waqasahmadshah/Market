@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_FILES['image_url']) && $_FILES['image_url']['error'] == UPLOAD_ERR_OK) {
         $file = $_FILES['image_url'];
         $allowed_types = ['jpeg', 'jpg', 'png'];
-        $max_size = 2 * 1024 * 1024;
+        $max_size = 12 * 1024 * 1024;
 
         $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
 
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         if ($file['size'] > $max_size) {
-            die("Error: File must be 2MB or smaller.");
+            die("Error: File must be 12MB or smaller.");
         }
 
         $new_filename = uniqid('team_') . '.' . $ext;

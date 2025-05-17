@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         if ($file['error'] == UPLOAD_ERR_OK) {
             $allowed_types = ["jpeg", "jpg", "png"];
-            $max_size = 2 * 1024 * 1024;
+            $max_size = 12 * 1024 * 1024;
             $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
             
             if (!in_array($ext, $allowed_types)) {
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             
             if ($file['size'] > $max_size) {
-                die("Error: File must be 2MB or smaller.");
+                die("Error: File must be 12MB or smaller.");
             }
             
             $new_filename = uniqid('hero_') . '.' . $ext;
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         die("Database error: " . mysqli_error($con));
     }
 } else {
-    header("Location: http://localhost/Marketxsolution/admin/users.php");
+    header("Location: users.php");
     exit();
 }
 ?>

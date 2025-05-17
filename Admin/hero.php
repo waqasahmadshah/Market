@@ -321,7 +321,7 @@ if (!isset($_SESSION['user_id'])) {
                                                 <th>Title</th>
                                                 <!-- <th>Sub Title</th> -->
                                                 <th>Description</th>
-                                                <!-- <th>Image</th> -->
+                                                <th>Image</th>
                                                 <th>Eidt</th>
                                                 <th>Delete</th>
                                             </tr>

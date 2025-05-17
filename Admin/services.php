@@ -314,7 +314,7 @@ if (!isset($_SESSION['user_id'])) {
                                     <?php
                                     include "configure.php";
                                    
-                                    $limit = 3;
+                                    $limit = 9;
                                     if(isset($_GET['page'])) {
                                         $page = $_GET['page'];
                                     } else {
@@ -418,7 +418,7 @@ if (!isset($_SESSION['user_id'])) {
                                     <?php
                                     include "configure.php";
                                     // Pagination logic
-                                    $limit = 5;
+                                    $limit = 10;
                                     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
                                     $offset = ($page - 1) * $limit;
 
@@ -553,7 +553,7 @@ if (!isset($_SESSION['user_id'])) {
                                                     echo "<td>" . htmlspecialchars($row['services_card_description']) . "</td>";
                                                     echo "<td><i class='{$row['icon']}'</td>";
                                                     echo "<td><a href='service_card_update.php?id=" . htmlspecialchars($row['services_card_id']) . "'><button class='btn btn-warning'>Edit</button></a></td>";
-                                                    echo "<td><a href='delete_service_card.php?id=" . htmlspecialchars($row['service_card_id']) . "' class='btn btn-sm btn-danger' onclick='return confirm(\"Are you sure?\");'>Delete</a></td>";
+                                                    echo "<td><a href='delete_service_card.php?id=" . htmlspecialchars($row['services_card_id']) . "' class='btn btn-sm btn-danger' onclick='return confirm(\"Are you sure?\");'>Delete</a></td>";
                                                     echo "</tr>";
                                                 }
                                             } else {

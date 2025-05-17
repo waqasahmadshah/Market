@@ -60,10 +60,10 @@ if (isset($_GET['service'])) {
               <a class="nav-link" href="index.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="about.php">About</a>
+              <a class="nav-link" href="about.php">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="services.php">Services</a>
+              <a class="nav-link active" href="services.php">Services</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="portfolio.php">Portfolio</a>
@@ -80,9 +80,18 @@ if (isset($_GET['service'])) {
     </nav>
 
 <!-- Service Hero Section -->
+ <?php
+    
+    $current_page='service';
+    $sql="SELECT * FROM hero_sections WHERE page_name='$current_page'";
+    $result=mysqli_query($con, $sql) or die("connection failed");
+    if(mysqli_num_rows($result)>0){
+      while($row=$result->fetch_assoc()){
+   ?>
 <section class="service-detail-hero" style="background-image:
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(20, 12, 68, 0.5)),
+    linear-gradient(rgba(14, 5, 70, 0.6)),
     url('./Admin/upload/<?php echo htmlspecialchars($row['image_url'])?>');">
+    <?php } }?>
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-12" data-aos="fade-right">
@@ -134,7 +143,7 @@ if (isset($_GET['service'])) {
                 </div>
             </div>
             <div class="col-lg-5 py-5" data-aos="fade-left">
-                <img src="./Admin/upload/<?php echo htmlspecialchars($service['image_url']); ?>" class="img-fluid" alt="Service Image" style="border-radius: 10px; margin-top: 50px;">
+                <img src="./Admin/upload/<?php echo htmlspecialchars($service['image_url']); ?>" class="img-fluid" alt="Service Image" style="width:100%; height:50%; border-radius: 10px; margin-top: 60px;">
             </div>
         </div>
     </div>
@@ -190,6 +199,7 @@ if (isset($_GET['service'])) {
   </section>
 
  <!-- Footer -->
+ <!-- Footer -->
   <footer class="footer">
     <div class="container-fluid px-5">
       <div class="row pt-5 justify-content-between">
@@ -204,8 +214,7 @@ if (isset($_GET['service'])) {
             <h3 class="footer-logo"><?php echo htmlspecialchars($row['company_name']);?></h3>
             <p><?php echo htmlspecialchars($row['company_description']);?></p>
             <div class="social-links mt-3">
-              <a href="<?php echo htmlspecialchars($row['facebook_link']);?>"><i class="fab fa-twitter"></i></a>
-              <a href="<?php echo htmlspecialchars($row['twitter_link']);?>"><i class="fab fa-facebook-f"></i></a>
+              <a href="<?php echo htmlspecialchars($row['facebook_link']);?>"><i class="fab fa-facebook-f"></i></a>
               <a href="<?php echo htmlspecialchars($row['instagram_link']);?>"><i class="fab fa-instagram"></i></a>
               <a href="<?php echo htmlspecialchars($row['linkedin_link']);?>"><i class="fab fa-linkedin-in"></i></a>
             </div>
@@ -226,11 +235,12 @@ if (isset($_GET['service'])) {
           </div>
         </div>
         <div class="col-lg-3 col-md-6">
-          <div class="footer-links">
+          <div class="row">
+            <div class="footer-links">
             <h4>Services</h4>
             <ul>
             <?php 
-              $sql="SELECT * FROM services WHERE service_id";
+              $sql="SELECT * FROM services WHERE service_id limit 5";
               $result=mysqli_query($con,$sql) or die("unsucessful");
               if(mysqli_num_rows($result)>0){
                 while($row=$result->fetch_assoc()){
@@ -240,6 +250,8 @@ if (isset($_GET['service'])) {
               <?php } } ?>
             </ul>
           </div>
+          </div>
+          
         </div>
         <div class="col-lg-3 col-md-6">
           <div class="footer-links">
@@ -298,15 +310,23 @@ if (isset($_GET['service'])) {
     </div>
   </footer>
 
+
+<!-- WhatsApp -->
+<?php
+    $result = mysqli_query($con, "SELECT whatsapp FROM companyinfo LIMIT 1");
+    if ($row = $result->fetch_assoc()):
+  ?>
+  <a href="https://wa.me/<?= $row['whatsapp'] ?>" class="whatsapp-link" target="_blank" aria-label="Contact via WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+<?php endif; ?>
+
  <!-- Back to top button -->
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
     <i class="fas fa-arrow-up"></i>
   </a>
 
-  <!-- whatsapp link -->
-  <a  href="https://wa.me/923350055620?"  class="whatsapp-link" target="_blank" aria-label="Contact via WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </a>
+
 
   <!-- Scripts -->
   <script src="js/bootstrap.bundle.min.js"></script>

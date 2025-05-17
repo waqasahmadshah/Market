@@ -339,7 +339,7 @@ if (!isset($_SESSION['user_id'])) {
                                                     echo "<td>" . htmlspecialchars($row['website']) . "</td>";
                                                     echo "<td>" . htmlspecialchars($row['phone_number']) . "</td>";
                                                     echo "<td>
-                                                            <a href='compeny_contact_update.php?id=" . htmlspecialchars($row['id']) . "' class='btn btn-sm btn-danger' onclick='return confirm(\"Are you sure?\");'>Delete</a>
+                                                            <a href='compeny_contact_update.php?id=" . htmlspecialchars($row['contact_id']) . "' class='btn btn-sm btn-warning' '>Edit</a>
                                                             </a>
                                                         </td>";
                                                     echo "<td>

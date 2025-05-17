@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Only process if file was actually uploaded
         if ($file['error'] == UPLOAD_ERR_OK) {
             $allowed_types = ["jpeg", "jpg", "png"];
-            $max_size = 2 * 1024 * 1024; // 2MB
+            $max_size = 15 * 1024 * 1024; // 2MB
             
             // Get file extension
             $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             
             if ($file['size'] > $max_size) {
-                die("Error: File must be 2MB or smaller.");
+                die("Error: File must be 15MB or smaller.");
             }
             
             // Generate unique filename
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         
         // Redirect with success status
-        header("Location: http://localhost/Marketxsolution/admin/hero.php?status=success");
+        header("Location: hero.php?status=success");
         exit();
     } else {
         die("Database error: " . mysqli_error($con));

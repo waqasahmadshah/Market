@@ -83,7 +83,7 @@
   ?>
   <!-- Hero Section -->
   <section id="hero" class="d-flex align-items-center" style="background-image:
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(20, 12, 68, 0.5)),
+    linear-gradient(rgba(14, 5, 70, 0.6)),
     url('./Admin/upload/<?php echo htmlspecialchars($row['image_url'])?>');">
     <div class="container">
       <div class="row align-items-center">
@@ -527,8 +527,7 @@
             <h3 class="footer-logo"><?php echo htmlspecialchars($row['company_name']);?></h3>
             <p><?php echo htmlspecialchars($row['company_description']);?></p>
             <div class="social-links mt-3">
-              <a href="<?php echo htmlspecialchars($row['facebook_link']);?>"><i class="fab fa-twitter"></i></a>
-              <a href="<?php echo htmlspecialchars($row['twitter_link']);?>"><i class="fab fa-facebook-f"></i></a>
+             <a href="<?php echo htmlspecialchars($row['facebook_link']);?>"><i class="fab fa-facebook-f"></i></a>
               <a href="<?php echo htmlspecialchars($row['instagram_link']);?>"><i class="fab fa-instagram"></i></a>
               <a href="<?php echo htmlspecialchars($row['linkedin_link']);?>"><i class="fab fa-linkedin-in"></i></a>
             </div>
@@ -623,11 +622,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- Back to top button -->
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
-    <i class="fas fa-arrow-up"></i>
-  </a>
   <?php
     // Database connection
     include "configure.php";
@@ -636,24 +630,29 @@
 
 
     // Query to fetch the WhatsApp number
-    $sql = "SELECT whatsapp FROM companyinfo LIMIT 1";
-    $result = mysqli_query($con,$sql);
+      $sql = "SELECT whatsapp FROM companyinfo LIMIT 1";
+      $result = mysqli_query($con,$sql);
 
-    if ($result && $row = $result->fetch_assoc()) {
-        $phone = $row['whatsapp'];
-        ?>
-        
-        <!-- WhatsApp Button -->
-        <a href="https://wa.me/<?php echo $phone; ?>?" class="whatsapp-link" target="_blank" aria-label="Contact via WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-        
-        <?php
-    } else {
-        echo "WhatsApp number not found.";
-    }
+      if ($result && $row = $result->fetch_assoc()) {
+          $phone = $row['whatsapp'];
+          ?>
+          
+          <!-- WhatsApp Button -->
+          <a href="https://wa.me/<?php echo $phone; ?>?" class="whatsapp-link" target="_blank" aria-label="Contact via WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+          </a>
+          
+          <?php
+      } else {
+          echo "WhatsApp number not found.";
+      }
 
-    ?>
+  ?>
+
+  <!-- Back to top button -->
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+    <i class="fas fa-arrow-up"></i>
+  </a>
 
 
   <!-- Scripts -->

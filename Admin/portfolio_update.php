@@ -299,7 +299,7 @@ if (!isset($_SESSION['user_id'])) {
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
                             <h4>Form for Updation</h4>
-                            <span class="ml-1">Projects</span>
+                            <span class="ml-1">Projects card</span>
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -353,21 +353,21 @@ if (!isset($_SESSION['user_id'])) {
 
                     <form id="myForm" action="update_portfolio.php" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="id" value="<?= htmlspecialchars($id) ?>">
-
-                        <style>
-                            #serviceName:hover::after {
-                                content: "Read Only";
-                                color: red;
-                                font-size: 15px;
-                                padding: 5px;
-                            }
-                        </style>
-
-                        <!-- Service Name (read-only) -->
+                        <?php
+                        // Fetch all services for the dropdown
+                        $servicesSql = "SELECT service_id, title FROM services";
+                        $servicesResult = mysqli_query($con, $servicesSql) or die("Query failed: " . mysqli_error($con));
+                        ?>
                         <div class="mb-3" id="serviceName">
-                            <label for="serviceTitle" class="form-label">Category Name</label>
-                            <input type="text" name="service" class="form-control" id="serviceTitle"
-                                value="<?= htmlspecialchars($row['title']) ?>" readonly>
+                            <label for="serviceSelect" class="form-label">Category Name</label>
+                            <select name="service_id" id="serviceSelect" class="form-control"required>
+                                <?php while ($service = mysqli_fetch_assoc($servicesResult)) : ?>
+                                    <option value="<?= $service['service_id'] ?>"
+                                        <?= ($service['service_id'] == $row['service_id']) ? 'selected' : '' ?>>
+                                        <?= htmlspecialchars($service['title']) ?>
+                                    </option>
+                                <?php endwhile; ?>
+                            </select>
                         </div>
 
                         <!-- Card Name -->
@@ -383,13 +383,12 @@ if (!isset($_SESSION['user_id'])) {
                             <input type="text" name="tech" class="form-control" id="iconField"
                                 value="<?= htmlspecialchars($row['portfolio_sub']) ?>" required>
                         </div>
-
-                        <!-- Description -->
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Description</label>
-                            <textarea name="description" class="form-control" id="description"
-                                rows="4" required><?= htmlspecialchars($row['portfolio_description']) ?></textarea>
+                         <div class="mb-3">
+                            <label for="url" class="form-label">URl</label>
+                            <input type="url" name="url" class="form-control" id="url" value="<?= htmlspecialchars($row['project_link']) ?>">
                         </div>
+
+                        
 
                         <!-- Image Upload -->
                         <div class="mb-3">

@@ -367,15 +367,15 @@ if (!isset($_SESSION['user_id'])) {
                     
                         <div class="mb-3">
                             <label for="facebook" class="form-label">Facebook Lind</label>
-                            <input type="text" name="facebook" class="form-control" id="facebook" value="<?php echo htmlspecialchars($row['facebook_url']); ?>">
+                            <input type="url" name="facebook" class="form-control" id="facebook" value="<?php echo htmlspecialchars($row['facebook_url']); ?>">
                         </div>
                         <div class="mb-3">
                             <label for="instagram" class="form-label">Instagram Link</label>
-                            <input type="text" name="instagram" class="form-control" id="instagram" value="<?php echo htmlspecialchars($row['instagram_url']); ?>">
+                            <input type="url" name="instagram" class="form-control" id="instagram" value="<?php echo htmlspecialchars($row['instagram_url']); ?>">
                         </div>
                         <div class="mb-3">
                             <label for="linkedin" class="form-label">Linkedin Link</label>
-                            <input type="text" name="linkedin" class="form-control" id="linkedin" value="<?php echo htmlspecialchars($row['linkedin_url']); ?>">
+                            <input type="url" name="linkedin" class="form-control" id="linkedin" value="<?php echo htmlspecialchars($row['linkedin_url']); ?>">
                         </div>
 
                         <!-- Image Upload -->

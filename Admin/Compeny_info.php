@@ -322,12 +322,12 @@ if (!isset($_SESSION['user_id'])) {
                                                 <th>Name</th>
                                                 <th>Logo</th>
                                                 <th>copyright</th>
-                                                <th>Description</th>
                                                 <th>Whatsapp</th>
                                                 <th>facebook_link</th>
-                                                <th>twitter_link</th>
+                                                <!-- <th>twitter_link</th> -->
                                                 <th>instagram_link</th>
                                                 <th>linkedin_link</th>
+                                                <th>Description</th>
                                                 <th>Edit</th>
                                                 <th>Delete</th>
                                             </tr>
@@ -336,23 +336,20 @@ if (!isset($_SESSION['user_id'])) {
                                             <?php
                                              $serial_no = 1;
                                             while ($row = $result->fetch_assoc()) {
-                                                echo "<tr class='text-dark'>";
-                                                echo "<td>" . $serial_no++. "</td>";
+                                               echo "<tr class='text-dark'>";
+                                                echo "<td>" . $serial_no++ . "</td>";
                                                 echo "<td>" . htmlspecialchars($row['company_name']) . "</td>";
                                                 echo "<td><img src='upload/" . htmlspecialchars($row['logo_url']) . "' width='50' height='50' style='object-fit: cover;'></td>";
                                                 echo "<td>" . htmlspecialchars($row['copyright_text']) . "</td>";
-                                                echo "<td>" . htmlspecialchars($row['company_description']) . "</td>";
                                                 echo "<td>" . htmlspecialchars($row['whatsapp']) . "</td>";
-                                                echo "<td>" . htmlspecialchars($row['facebook_link']) . "</td>";
-                                                echo "<td>" . htmlspecialchars($row['twitter_link']) . "</td>";
-                                                echo "<td>" . htmlspecialchars($row['instagram_link']) . "</td>";
-                                                echo "<td>" . htmlspecialchars($row['linkedin_link']) . "</td>";
-                                               
-                                                echo "<td>
-                                                <a href='Compeny_info_update.php?id=".htmlspecialchars($row['id'])."'><button class='btn btn-warning'>Edit</button></a></td>
-                                                        <td><a href='delete_Compeny_info.php?id=" . htmlspecialchars($row['id']) . "' class='btn btn-sm btn-danger' onclick='return confirm(\"Are you sure?\");'>Delete</a>
-                                                    </td>";
+                                                echo "<td><a href='" . htmlspecialchars($row['facebook_link']) . "' target='_blank'><i class='fab fa-facebook-f' style='font-size: 30px;'></i></a></td>";
+                                                echo "<td><a href='" . htmlspecialchars($row['instagram_link']) . "' target='_blank'><i class='fab fa-instagram' style='font-size: 30px;'></i></a></td>";
+                                                echo "<td><a href='" . htmlspecialchars($row['linkedin_link']) . "' target='_blank'><i class='fab fa-linkedin-in' style='font-size: 30px;'></i></a></td>";
+                                                echo "<td>" . htmlspecialchars($row['company_description']) . "</td>";
+                                                echo "<td><a href='Compeny_info_update.php?id=" . htmlspecialchars($row['id']) . "'><button class='btn btn-warning'>Edit</button></a></td>";
+                                                echo "<td><a href='delete_Compeny_info.php?id=" . htmlspecialchars($row['id']) . "' class='btn btn-sm btn-danger' onclick='return confirm(\"Are you sure?\");'>Delete</a></td>";
                                                 echo "</tr>";
+
                                             }
                                             ?>
                                             

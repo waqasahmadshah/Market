@@ -340,19 +340,19 @@ if (!isset($_SESSION['user_id'])) {
                         </div>
                         <div class="mb-3">
                             <label for="Facebook" class="form-label">Facebook link</label>
-                            <input type="text" name="Facebook" class="form-control" id="Facebook" required>
+                            <input type="url" name="Facebook" class="form-control" id="Facebook" required>
                         </div>
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label for="Twitter" class="form-label">Twitter link</label>
-                            <input type="text" name="Twitter" class="form-control" id="Twitter" required>
-                        </div>
+                            <input type="url" name="Twitter" class="form-control" id="Twitter" required>
+                        </div> -->
                         <div class="mb-3">
                             <label for="Instagram" class="form-label">Instagram link</label>
-                            <input type="text" name="Instagram" class="form-control" id="Instagram" required>
+                            <input type="url" name="Instagram" class="form-control" id="Instagram" required>
                         </div>
                         <div class="mb-3">
                             <label for="LinkedIn" class="form-label">LinkedIn link</label>
-                            <input type="text" name="LinkedIn" class="form-control" id="LinkedIn" required>
+                            <input type="url" name="LinkedIn" class="form-control" id="LinkedIn" required>
                         </div>
 
                         <!-- Right Side: Image Upload -->

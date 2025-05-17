@@ -3,7 +3,7 @@
     if (isset($_FILES['image_url'])) {
     $file = $_FILES['image_url'];
     $allowed_types = ["jpeg", "jpg", "png"];
-    $max_size = 2 * 1024 * 1024; // 2MB
+    $max_size = 15 * 1024 * 1024; // 2MB
     
     // Get file extension
     $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));

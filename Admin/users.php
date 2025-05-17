@@ -356,7 +356,7 @@ if (!isset($_SESSION['user_id'])) {
                                                         <a href='users_update.php?id=".htmlspecialchars($row['user_id'])."'><button class='btn btn-warning'>Edit</button></a>
                                                     </td>
                                                     <td>
-                                                        <a href='delete_testimonial.php?id=" . htmlspecialchars($row['user_id']) . "' class='btn btn-sm btn-danger' onclick='return confirm(\"Are you sure?\");'>Delete</a>
+                                                        <a href='delete_user.php?id=" . htmlspecialchars($row['user_id']) . "' class='btn btn-sm btn-danger' onclick='return confirm(\"Are you sure?\");'>Delete</a>
                                                     </td>";
                                                 echo "</tr>";
                                             }

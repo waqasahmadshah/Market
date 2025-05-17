@@ -4,7 +4,7 @@ include "configure.php";
 if (isset($_FILES['image_urle'])) {
     $file = $_FILES['image_urle'];
     $allowed_types = ["jpeg", "jpg", "png"];
-    $max_size = 2 * 1024 * 1024; // 2MB
+    $max_size = 12 * 1024 * 1024; // 2MB
     
     // Get file extension
     $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
@@ -15,7 +15,7 @@ if (isset($_FILES['image_urle'])) {
     }
     
     if ($file['size'] > $max_size) {
-        die("Error: File must be 2MB or smaller.");
+        die("Error: File must be 12MB or smaller.");
     }
     
     // Move uploaded file
@@ -25,10 +25,10 @@ if (isset($_FILES['image_urle'])) {
         $title = mysqli_real_escape_string($con, $_POST['title']);
         $tech = mysqli_real_escape_string($con, $_POST['tech']);
         $service = mysqli_real_escape_string($con, $_POST['service']);
-        $description = mysqli_real_escape_string($con, $_POST['description']);
+        $$url = mysqli_real_escape_string($con, $_POST['url']);
         
         // Insert into database
-        $sql = "INSERT INTO `portfolio` (`portfolio_name`, `portfolio_sub`, `portfolio_description`, `image_urle`, `service_id`) VALUES ('$title', '$tech', '$description', '$file[name]', '$service')";
+        $sql = "INSERT INTO `portfolio` (`portfolio_name`, `portfolio_sub`, `image_urle`, `service_id`, `project_link`) VALUES ('$title', '$tech', '$description', '$file[name]', '$service','$url')";
         
         if (mysqli_query($con, $sql)) {
             header("Location: http://localhost/Marketxsolution/admin/portfolio.php");
